@@ -1,0 +1,4 @@
+orderId,orderDate,status,totalAmount,description,assignedEmployee,dueDate
+1,2025-05-01,Open,5000,Foundation Digging,John Diesel,2025-05-10
+2,2025-05-02,In Progress,3000,Drilling Test,Sarah Miller,2025-05-12
+3,2025-05-03,Closed,7000,Hauling Service,Mike Ross,2025-05-15

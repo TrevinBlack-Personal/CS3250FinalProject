@@ -1,0 +1,4 @@
+recordId,equipmentId,maintenanceDate,description,performedBy,fuelType,quantity,costPerUnit
+1,1,2025-01-10,Oil Change,John Diesel,Diesel,50,4
+2,2,2025-01-15,Bit Replacement,Sarah Miller,Gasoline,20,3
+3,3,2025-01-20,Tire Rotation,Mike Ross,Diesel,100,4

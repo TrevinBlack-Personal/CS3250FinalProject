@@ -1,0 +1,4 @@
+inspectionId,equipmentId,inspectionDate,inspectorName,description,passed
+1,1,2025-02-01,Alice Brown,Routine Check,1
+2,2,2025-02-02,Bob Smith,Safety Inspection,0
+3,3,2025-02-05,Clara Jones,Routine Check,1

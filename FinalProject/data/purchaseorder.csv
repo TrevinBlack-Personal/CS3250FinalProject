@@ -1,0 +1,4 @@
+orderId,orderDate,status,totalAmount,vendorId,expectedDeliveryDate,shippingMethod
+1,2025-08-01,Open,8000,VEND001,2025-08-10,Truck
+2,2025-08-02,Closed,6000,VEND002,2025-08-12,Air
+3,2025-08-03,Pending,12000,VEND003,2025-08-15,Sea

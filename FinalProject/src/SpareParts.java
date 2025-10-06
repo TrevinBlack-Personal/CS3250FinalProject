@@ -12,7 +12,6 @@ public class SpareParts {
                      int quantityInStock, double cost) {
         this.partId = partId;
         this.name = name;
-        this.equipmentId = equipmentId;
         this.quantityInStock = quantityInStock;
         this.cost = cost;
     }

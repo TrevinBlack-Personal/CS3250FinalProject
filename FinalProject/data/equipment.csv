@@ -1,0 +1,4 @@
+equipmentId,name,type,quantity,status
+1,Excavator,Heavy,5,Active
+2,Drill,Tool,15,Under Maintenance
+3,Dump Truck,Vehicle,3,Active

@@ -1,0 +1,4 @@
+managerId,employeeId,teamSize,level
+MGR001,EMP001,10,Senior
+MGR002,EMP002,5,Mid
+MGR003,EMP003,8,Senior

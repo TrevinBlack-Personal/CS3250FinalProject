@@ -1,0 +1,99 @@
+# ----------------- Core Inventory -----------------------
+# equipment.csv
+equipmentId,name,type,quantity,status
+1,Excavator,Heavy,5,Active
+2,Drill,Tool,15,Under Maintenance
+3,Dump Truck,Vehicle,3,Active
+
+# spareparts.csv
+partId,name,quantityInStock,cost
+1,Hydraulic Pump,10,2500
+2,Drill Bit,50,200
+3,Truck Tire,20,800
+
+# fuel.csv
+fuelId,fuelType,quantity,costPerUnit
+1,Diesel,5000,4
+2,Gasoline,3000,3
+3,Propane,1500,2
+
+# ----------------- Maintenance Logs -----------------------
+# maintenancelog.csv
+recordId,equipmentId,maintenanceDate,description,performedBy,fuelType,quantity,costPerUnit
+1,1,2025-01-10,Oil Change,John Diesel,Diesel,50,4
+2,2,2025-01-15,Bit Replacement,Sarah Miller,Gasoline,20,3
+3,3,2025-01-20,Tire Rotation,Mike Ross,Diesel,100,4
+
+# inspections.csv
+inspectionId,equipmentId,inspectionDate,inspectorName,description,passed
+1,1,2025-02-01,Alice Brown,Routine Check,1
+2,2,2025-02-02,Bob Smith,Safety Inspection,0
+3,3,2025-02-05,Clara Jones,Routine Check,1
+
+# schedule.csv
+scheduleId,equipmentId,scheduleDate,taskType,assignedTo
+1,1,2025-03-01,Oil Change,John Diesel
+2,2,2025-03-05,Calibration,Sarah Miller
+3,3,2025-03-10,Brake Test,Mike Ross
+
+# downtime.csv
+logId,equipmentId,startTime,endTime,reason,duration
+1,1,2025-04-01 08:00,2025-04-01 12:00,Hydraulic Failure,4h
+2,2,2025-04-02 09:00,2025-04-02 15:00,Bit Jam,6h
+3,3,2025-04-03 07:00,2025-04-03 11:00,Flat Tire,4h
+
+# ----------------- Transaction Records -----------------------
+# workorder.csv
+orderId,orderDate,status,totalAmount,description,assignedEmployee,dueDate
+1,2025-05-01,Open,5000,Foundation Digging,John Diesel,2025-05-10
+2,2025-05-02,In Progress,3000,Drilling Test,Sarah Miller,2025-05-12
+3,2025-05-03,Closed,7000,Hauling Service,Mike Ross,2025-05-15
+
+# salesorder.csv
+orderId,orderDate,status,totalAmount,customerId,shippingAddress,paymentMethod
+1,2025-06-01,Completed,10000,CUST001,123 Main St,Credit Card
+2,2025-06-02,Pending,5000,CUST002,456 Oak Ave,Wire Transfer
+3,2025-06-03,Shipped,7500,CUST003,789 Pine Rd,Cash
+
+# invoice.csv
+orderId,orderDate,status,totalAmount,invoiceNumber,dueDate,paid
+1,2025-07-01,Issued,10000,INV1001,2025-07-15,1
+2,2025-07-02,Issued,5000,INV1002,2025-07-16,0
+3,2025-07-03,Paid,7500,INV1003,2025-07-20,1
+
+# purchaseorder.csv
+orderId,orderDate,status,totalAmount,vendorId,expectedDeliveryDate,shippingMethod
+1,2025-08-01,Open,8000,VEND001,2025-08-10,Truck
+2,2025-08-02,Closed,6000,VEND002,2025-08-12,Air
+3,2025-08-03,Pending,12000,VEND003,2025-08-15,Sea
+
+# ----------------- Users & Roles -----------------------
+# user.csv
+id,name,email,password
+1,John Doe,john@example.com,pass123
+2,Sarah Miller,sarah@example.com,pass456
+3,Mike Ross,mike@example.com,pass789
+
+# employee.csv
+employeeId,userId,department,salary
+EMP001,1,Operations,55000
+EMP002,2,Maintenance,60000
+EMP003,3,Logistics,58000
+
+# manager.csv
+managerId,employeeId,teamSize,level
+MGR001,EMP001,10,Senior
+MGR002,EMP002,5,Mid
+MGR003,EMP003,8,Senior
+
+# customer.csv
+customerId,userId,address,phoneNumber
+CUST001,1,123 Main St,555-1111
+CUST002,2,456 Oak Ave,555-2222
+CUST003,3,789 Pine Rd,555-3333
+
+# vendor.csv
+vendorId,userId,companyName,productCategory
+VEND001,1,Utah Mining Supplies,Equipment
+VEND002,2,RockSolid Parts,Spare Parts
+VEND003,3,FuelWorld,Fuel

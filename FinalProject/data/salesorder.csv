@@ -1,0 +1,4 @@
+orderId,orderDate,status,totalAmount,customerId,shippingAddress,paymentMethod
+1,2025-06-01,Completed,10000,CUST001,123 Main St,Credit Card
+2,2025-06-02,Pending,5000,CUST002,456 Oak Ave,Wire Transfer
+3,2025-06-03,Shipped,7500,CUST003,789 Pine Rd,Cash

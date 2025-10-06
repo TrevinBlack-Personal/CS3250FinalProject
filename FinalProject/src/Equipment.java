@@ -15,7 +15,6 @@ public class Equipment {
         this.equipmentId = equipmentId;
         this.name = name;
         this.type = type;
-        this.purchaseDate = purchaseDate;
         this.status = status;
     }
 

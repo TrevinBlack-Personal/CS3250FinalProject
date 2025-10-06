@@ -6,18 +6,18 @@ public class Inspection {
     private String equipmentId;
     private Date inspectionDate;
     private String inspectorName;
-    private String findings;
+    private String description;
     private boolean passed;
 
     // Constructors
     public Inspection() {}
     public Inspection(String inspectionId, String equipmentId, Date inspectionDate,
-                      String inspectorName, String findings, boolean passed) {
+                      String inspectorName, String description, boolean passed) {
         this.inspectionId = inspectionId;
         this.equipmentId = equipmentId;
         this.inspectionDate = inspectionDate;
         this.inspectorName = inspectorName;
-        this.findings = findings;
+        this.description = description;
         this.passed = passed;
     }
 
@@ -34,14 +34,14 @@ public class Inspection {
     public String getInspectorName() { return inspectorName; }
     public void setInspectorName(String inspectorName) { this.inspectorName = inspectorName; }
 
-    public String getFindings() { return findings; }
-    public void setFindings(String findings) { this.findings = findings; }
+    public String getDescription() { return description; }
+    public void setdescription(String description) { this.description = description; }
 
     public boolean isPassed() { return passed; }
     public void setPassed(boolean passed) { this.passed = passed; }
 
     // Methods
     public void performInspection() {}
-    public void recordFindings(String findings, boolean passed) {}
+    public void recorddescription(String description, boolean passed) {}
     public void scheduleFollowUpInspection(Date date) {}
 }

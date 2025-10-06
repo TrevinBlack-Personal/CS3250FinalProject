@@ -1,0 +1,4 @@
+scheduleId,equipmentId,scheduleDate,taskType,assignedTo
+1,1,2025-03-01,Oil Change,John Diesel
+2,2,2025-03-05,Calibration,Sarah Miller
+3,3,2025-03-10,Brake Test,Mike Ross

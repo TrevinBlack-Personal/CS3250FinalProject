@@ -1,0 +1,4 @@
+customerId,userId,address,phoneNumber
+CUST001,1,123 Main St,555-1111
+CUST002,2,456 Oak Ave,555-2222
+CUST003,3,789 Pine Rd,555-3333

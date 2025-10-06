@@ -1,0 +1,4 @@
+logId,equipmentId,startTime,endTime,reason,duration
+1,1,2025-04-01 08:00,2025-04-01 12:00,Hydraulic Failure,4h
+2,2,2025-04-02 09:00,2025-04-02 15:00,Bit Jam,6h
+3,3,2025-04-03 07:00,2025-04-03 11:00,Flat Tire,4h
