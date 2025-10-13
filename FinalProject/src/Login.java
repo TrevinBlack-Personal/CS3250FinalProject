@@ -80,21 +80,6 @@ public class Login extends BorderPane {
 	    mainMenu.setTitle("Main Menu");
 	    mainMenu.show();
 	    
-	    Stage mainMenu2 = new Stage();  // Create a new window
-	    Scene scene2 = new Scene(new MainMenuPane("Guest", "Add"), 500, 500); // Create the scene with your pane
-	    
-	    mainMenu2.setScene(scene2);
-	    mainMenu2.setTitle("Main Menu");
-	    mainMenu2.show();
-	    
-	    Stage mainMenu3 = new Stage();  // Create a new window
-	    Scene scene3 = new Scene(new MainMenuPane("Guest", "Delete"), 500, 500); // Create the scene with your pane
-	    
-	    mainMenu3.setScene(scene3);
-	    mainMenu3.setTitle("Main Menu");
-	    mainMenu3.show();
-	    
-	    
 	}
 
 }

@@ -15,6 +15,7 @@ public class ResultsPane extends BorderPane {
 
     @SuppressWarnings("deprecation")
 	public ResultsPane() {
+    	// Create table for data viewing
         tableView = new TableView<>();
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setCenter(tableView);
@@ -23,19 +24,20 @@ public class ResultsPane extends BorderPane {
     String sql = "";
     
 
-    // Executes SQL statement and displays in the table view
-    public void displayResults(String searchOption, Object... params) {
-        tableView.getItems().clear();
-        tableView.getColumns().clear();
-        
-        // Only SQL statement available 
-        if ("employee name" == searchOption) {
-            sql = "SELECT e.employeeId, u.name AS employeeName, u.email, e.department, e.salary " +
-                  "FROM employee e JOIN users u ON e.userId = u.id " +
-                  "WHERE u.name LIKE ?";
-        }
+    public void displayResults(String searchOption, String searchTerm, Object... params) {
+        clear();
 
-            
+        // Retrieve SQL query based on searchOption & searchTerm
+        // Args:
+        	//String searchOption = what was selected from drop down menu in searchInventory
+        	//String searchTerm = What user typed to search for within database Ex: "John", "EMP001
+        String sql = retrieveSql.getQuery(searchOption, searchTerm);
+
+     /* Not my proudest work.. most of this code was generated with Chat GPT.
+      * I was able to get to a point where I could connect to the DB & get data into the cells
+      * However, formatting was a nightmare. First I could only show one record, then the first column pushed everything 
+      * else off screen. So I had enough and used chat gpt to format the cells & properly update table based on what was retrieved from the SQL statement dynamically
+        */
         try (Connection conn = Database.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -47,25 +49,33 @@ public class ResultsPane extends BorderPane {
             ResultSetMetaData meta = rs.getMetaData();
             int columnCount = meta.getColumnCount();
 
-            // Create table columns dynamically - generated with chat gpt
-            // Prompt: Can you help me dynamically generate columns and rows for the TableView so that it fits the values of whatever is returned from the SQL statement
+            // Create columns dynamically
             for (int i = 1; i <= columnCount; i++) {
                 final int colIndex = i - 1;
                 TableColumn<ObservableList<String>, String> col =
-                        new TableColumn<>(meta.getColumnName(i));
+                    new TableColumn<>(meta.getColumnLabel(i));
+
                 col.setCellValueFactory(cellData -> {
                     String value = cellData.getValue().get(colIndex);
                     return new javafx.beans.property.SimpleStringProperty(value);
                 });
+
                 tableView.getColumns().add(col);
             }
 
-            // Add rows
+            // Evenly size columns
+            double totalWidth = tableView.getWidth() > 0 ? tableView.getWidth() : 600;
+            double colWidth = totalWidth / columnCount;
+            for (TableColumn<ObservableList<String>, ?> col : tableView.getColumns()) {
+                col.setPrefWidth(colWidth);
+            }
+
+            // Fill rows
             ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
             while (rs.next()) {
                 ObservableList<String> row = FXCollections.observableArrayList();
                 for (int i = 1; i <= columnCount; i++) {
-                    row.add(rs.getString(i));
+                    row.add(rs.getString(i) == null ? "" : rs.getString(i));
                 }
                 data.add(row);
             }
@@ -76,6 +86,8 @@ public class ResultsPane extends BorderPane {
             e.printStackTrace();
         }
     }
+
+
 
     // Clears table view
     public void clear() {
