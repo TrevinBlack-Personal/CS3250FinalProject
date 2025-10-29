@@ -1,10 +1,14 @@
+/* =======================================
+ * Method for seeding the database 
+ * =======================================
+ */
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class SeederMain {
 
-    // Helper method to check if a table already has rows
+    // Method to check if a table already has rows
     private static boolean tableHasData(String tableName) {
         String sql = "SELECT COUNT(*) AS count FROM " + tableName;
 

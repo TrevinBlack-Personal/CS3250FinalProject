@@ -1,3 +1,15 @@
+/* =======================================
+ * Method for substantiating data in a viewable way via TableView
+ * 
+ * Methods:
+ *  	displayResults()		Displays data via a TableView
+ *  	deleteSelectedRow()		Deletes a row from the table & database
+ * Args:
+ * 		searchOption - Table selected by user
+ * 		searchTerm - What user typed / wants to search by
+ * =======================================
+ */
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -12,32 +24,23 @@ import java.sql.ResultSetMetaData;
 public class ResultsPane extends BorderPane {
 
     private TableView<ObservableList<String>> tableView;
+    private String currentTableName;   
 
-    @SuppressWarnings("deprecation")
-	public ResultsPane() {
-    	// Create table for data viewing
+    public ResultsPane() {
         tableView = new TableView<>();
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setCenter(tableView);
-    };
-    
-    String sql = "";
-    
+    }
 
     public void displayResults(String searchOption, String searchTerm, Object... params) {
         clear();
 
-        // Retrieve SQL query based on searchOption & searchTerm
-        // Args:
-        	//String searchOption = what was selected from drop down menu in searchInventory
-        	//String searchTerm = What user typed to search for within database Ex: "John", "EMP001
+        // Save for later use in deleteSelectedRow()
+        this.currentTableName = searchOption;
+
+        // Get query for this table
         String sql = retrieveSql.getQuery(searchOption, searchTerm);
 
-     /* Not my proudest work.. most of this code was generated with Chat GPT.
-      * I was able to get to a point where I could connect to the DB & get data into the cells
-      * However, formatting was a nightmare. First I could only show one record, then the first column pushed everything 
-      * else off screen. So I had enough and used chat gpt to format the cells & properly update table based on what was retrieved from the SQL statement dynamically
-        */
         try (Connection conn = Database.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -49,7 +52,8 @@ public class ResultsPane extends BorderPane {
             ResultSetMetaData meta = rs.getMetaData();
             int columnCount = meta.getColumnCount();
 
-            // Create columns dynamically
+            // Create columns dynamically - Generated with chat GPT
+            // Prompt: How can I update columns dynamically in a TableView and evenly space the columns
             for (int i = 1; i <= columnCount; i++) {
                 final int colIndex = i - 1;
                 TableColumn<ObservableList<String>, String> col =
@@ -87,11 +91,30 @@ public class ResultsPane extends BorderPane {
         }
     }
 
-
-
     // Clears table view
     public void clear() {
         tableView.getItems().clear();
         tableView.getColumns().clear();
+    }
+
+    // Delete row based on selection
+    public void deleteSelectedRow() {
+        ObservableList<String> selected = tableView.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            System.out.println("No row selected to delete");
+            return;
+        }
+
+        if (currentTableName == null) {
+            System.out.println("No table currently loaded");
+            return;
+        }
+
+        String pkValue = selected.get(0); // Primary Key value
+        String pkColumn = tableView.getColumns().get(0).getText(); // Primary key column
+
+
+        DeleteSql.executeDelete(currentTableName, pkValue, pkColumn);
+        tableView.getItems().remove(selected); // remove from UI
     }
 }

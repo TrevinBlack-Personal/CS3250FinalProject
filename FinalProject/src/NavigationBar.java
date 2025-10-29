@@ -1,3 +1,19 @@
+/* =======================================
+ * Class for navigation through panes
+ * 
+ * Constructor:
+ * 		NavigationBar 	Sets up objects within pane
+ * Args:
+ * 		username 	Username of person logged in
+ * 
+ * Methods:
+ * 		SwitchScene() 	Switches the scene based on radio button that is pressed
+ * Args:
+ * 		menuType 	Add, Search, Delete Strings for switching
+ * 		username 	Username of person logged in
+ * =======================================
+ */
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -18,17 +34,20 @@ public class NavigationBar extends HBox {
         RadioButton searchBtn = new RadioButton("Search");
         RadioButton addBtn = new RadioButton("Add");
         RadioButton deleteBtn = new RadioButton("Delete");
+        RadioButton changeBtn = new RadioButton("Change");
 
         // Assign userData for logic
         searchBtn.setUserData("Search");
         addBtn.setUserData("Add");
         deleteBtn.setUserData("Delete");
+        changeBtn.setUserData("Change");
 
         // Toggle group
         ToggleGroup crudButtons = new ToggleGroup();
         searchBtn.setToggleGroup(crudButtons);
         addBtn.setToggleGroup(crudButtons);
         deleteBtn.setToggleGroup(crudButtons);
+        changeBtn.setToggleGroup(crudButtons);
 
         // Styles - styling generated using Chat GPT
         String buttonStyle = """
@@ -41,14 +60,21 @@ public class NavigationBar extends HBox {
         searchBtn.setStyle("-fx-background-color: #3498db;" + buttonStyle);
         addBtn.setStyle("-fx-background-color: #27ae60;" + buttonStyle);
         deleteBtn.setStyle("-fx-background-color: #e74c3c;" + buttonStyle);
+        changeBtn.setStyle("-fx-background-color: #702963;" + buttonStyle);
 
         // Margins
         HBox.setMargin(searchBtn, new Insets(0, 10, 0, 0));
         HBox.setMargin(addBtn, new Insets(0, 10, 0, 0));
+        HBox.setMargin(deleteBtn, new Insets(0,10,0,0));
 
-        // Add components
-        getChildren().addAll(welcomeLabel, searchBtn, addBtn, deleteBtn);
-
+        // Add components - re format this for guest vs user login
+        if (username != "Guest") {
+        	getChildren().addAll(welcomeLabel, searchBtn, addBtn, deleteBtn, changeBtn);
+        }
+        else {
+        	getChildren().addAll(welcomeLabel, searchBtn, addBtn, deleteBtn, changeBtn); // Remove add and delete for guest user
+        }
+        
         // Scene switch listener
         crudButtons.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
             if (newToggle != null) {

@@ -1,7 +1,13 @@
-// -------------------------------------------------------------
-// This entire class is only supposed to run the first time you run the application. 
-// It sets up the database 
-// -------------------------------------------------------------
+/* =======================================
+* A class for setting up the database. Creates all tables relevant to the database.
+*
+* Constructor: 
+* 	InitializeDatabase() 	runs all create table SQL statements
+*  
+* Methods:
+* 	Reset() 	Deletes all data and re initializes database based on default CSV file values
+* =======================================
+*/
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;

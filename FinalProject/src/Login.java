@@ -1,7 +1,18 @@
-
+/* =======================================
+ *  Login Class pane. Simple login screen with user validation & guest login
+ *  
+ *  Constructor:
+ *  		Login() 	Sets up the objects for the pane
+ *  
+ *  Methods:
+ *  	openMainMenuGuest() 	Logs into the system using a guest login
+ *  	openMainMenuUser() 		Logs into the system using a user login
+ * =======================================
+ */
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -38,20 +49,22 @@ public class Login extends BorderPane {
 		rightPane.setPrefWidth(50);
 		setRight(rightPane);
 		
-		// Center pane. Text boxes for username & password
+		// Center pane. Text boxes for email & password
 		VBox textFieldPane = new VBox();
 		textFieldPane.setAlignment(Pos.CENTER);
 		
-		TextField usernameText = new TextField();
-		usernameText.setPromptText("Username");
-		usernameText.setStyle("-fx-max-width:400;");
+		// Email Text Field
+		TextField emailText = new TextField();
+		emailText.setPromptText("Email");
+		emailText.setStyle("-fx-max-width:400;");
 		
-		TextField passwordText = new TextField();
+		// Password Text Field
+		PasswordField passwordText = new PasswordField();
 		passwordText.setPromptText("Password");
 		passwordText.setStyle("-fx-max-width:400;");
 
 
-		textFieldPane.getChildren().addAll(usernameText, passwordText);
+		textFieldPane.getChildren().addAll(emailText, passwordText);
 
 		// Bottom Pane for login buttons
 		HBox buttonPane = new HBox();
@@ -62,8 +75,16 @@ public class Login extends BorderPane {
 		buttonPane.setAlignment(Pos.TOP_CENTER);
 		buttonPane.setPrefHeight(75);
 		
-		// Temp method call
-		guestButton.setOnAction(e -> openMainMenu());
+		
+		// Method call for guest login
+		guestButton.setOnAction(e -> openMainMenuGuest());
+		
+		// Method call for user login
+		loginButton.setOnAction(e -> {
+			String Email = emailText.getText();
+			String Password = passwordText.getText();
+			openMainMenuUser(Email, Password);
+		});
 		
 		setCenter(textFieldPane);
 		setBottom(buttonPane);
@@ -71,15 +92,32 @@ public class Login extends BorderPane {
 
 	}
 
-	// Temporary Method for opening a new window
-	private void openMainMenu() {
-	    Stage mainMenu = new Stage();  // Create a new window
+	// Login the guest
+	private void openMainMenuGuest() {
+	    Stage mainMenu = (Stage) getScene().getWindow();
 	    Scene scene = new Scene(new MainMenuPane("Guest", "Search"), 500, 500); // Create the scene with your pane
 	    
 	    mainMenu.setScene(scene);
 	    mainMenu.setTitle("Main Menu");
-	    mainMenu.show();
 	    
+	}
+	
+	// Login the user 
+	private void openMainMenuUser(String Email, String Password) {
+	    String name = loginValidation.validateLogin(Email, Password);
+		if (name != null) {
+			Stage mainMenu = (Stage) getScene().getWindow();
+		    Scene scene = new Scene(new MainMenuPane(name, "Search"), 500, 500); // Create the scene with your pane
+		    
+		    mainMenu.setScene(scene);
+		    mainMenu.setTitle("Main Menu");
+	    }
+		else {
+			System.out.println("Error. Login()");
+		}
+	    
+		
+
 	}
 
 }

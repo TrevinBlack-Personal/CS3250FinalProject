@@ -1,3 +1,8 @@
+/* =======================================
+ * Parent class for the gridpane. Sets top, bottom, left, right, center
+ * =======================================
+ */
+
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -35,6 +40,11 @@ public class MainMenuPane extends BorderPane {
                 addInventory.setPrefWidth(150);
                 setLeft(addInventory);
                 addInventory.setAlignment(Pos.BASELINE_CENTER);
+                
+                addInventory.setOnTableSelected(tableName -> {
+                    resultsPane.displayResults(tableName, null);  // no search term, just show all rows
+                });
+                
             }
             case "Delete" -> {
                 DeleteInventory deleteInventory = new DeleteInventory();
@@ -42,6 +52,25 @@ public class MainMenuPane extends BorderPane {
                 deleteInventory.setPrefWidth(150);
                 setLeft(deleteInventory);
                 deleteInventory.setAlignment(Pos.BASELINE_CENTER);
+                
+                deleteInventory.setOnTableSelected(tableName -> {
+                	resultsPane.displayResults(tableName, null);
+                });
+                
+                deleteInventory.setOnDeletePressed(() -> {
+                    resultsPane.deleteSelectedRow();
+                });
+            }
+            case "Change" -> {
+            	ChangeInventory changeInventory = new ChangeInventory();
+                changeInventory.setStyle("-fx-background-color:#4682B4; -fx-border-color:black");
+                changeInventory.setPrefWidth(150);
+                setLeft(changeInventory);
+                changeInventory.setAlignment(Pos.BASELINE_CENTER);
+                
+                changeInventory.setOnTableSelected(tableName -> {
+                	resultsPane.displayResults(tableName, null);
+                });
             }
         }
 

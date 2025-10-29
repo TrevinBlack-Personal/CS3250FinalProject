@@ -1,7 +1,7 @@
 /*=========================================================
- * Class for the adding items into the database
+ * Class for the changing items in the database
  * Constructor:
- * 		AddInventory() - Generates GridPane objects
+ * 		ChangeInventory() - Generates GridPane objects
  * Methods:
  *      loadTableColumns - Dynamically loads text fields based on selected table
  *      setOnTableSelected - Callback function that updates the table in ResultsPane
@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class AddInventory extends GridPane {
+public class ChangeInventory extends GridPane {
 
     private GridPane fieldContainer;
     
@@ -36,11 +36,11 @@ public class AddInventory extends GridPane {
 
     private String currentTableName = null;
 
-    public AddInventory() {
+    public ChangeInventory() {
         setVgap(15);
         setPadding(new Insets(20));
 
-        Label title = new Label("Add Record");
+        Label title = new Label("Change Record");
         title.setStyle("""
             -fx-font-size: 18px;
             -fx-font-weight: bold;
@@ -57,12 +57,12 @@ public class AddInventory extends GridPane {
         );
 
         // Buttons
-        Button addButton = new Button("Add");
+        Button changeButton = new Button("Change");
         Button clearButton = new Button("Clear");
 
         // Button styles. CSS Generated with CHAT GPT
-        addButton.setStyle(
-        	    "-fx-background-color: #27ae60;" +   
+        changeButton.setStyle(
+        	    "-fx-background-color: #702963;" +   
         	    "-fx-text-fill: white;" +           
         	    "-fx-font-size: 10px;" +
         	    "-fx-font-weight: bold;" +
@@ -76,11 +76,11 @@ public class AddInventory extends GridPane {
         	    "-fx-font-size: 10px;" +
         	    "-fx-font-weight: bold;" +
         	    "-fx-background-radius: 8;" +       
-        	    "-fx-padding: 5;" +
-        	    "-fx-cursor: hand;");
+        	    "-fx-padding: 5;"
+        	    + "-fx-cursor: hand;" );
 
         // HBOX for Alignment
-        HBox buttons = new HBox(10, addButton, clearButton);
+        HBox buttons = new HBox(10, changeButton, clearButton);
         buttons.setAlignment(Pos.CENTER);
 
         fieldContainer = new GridPane();
@@ -115,7 +115,7 @@ public class AddInventory extends GridPane {
         });
 
         // Add button listener
-        addButton.setOnAction(e -> {
+        changeButton.setOnAction(e -> {
             if (currentTableName == null || textFields.isEmpty()) {
                 System.err.println("No table selected or no fields loaded.");
                 return;
@@ -131,7 +131,7 @@ public class AddInventory extends GridPane {
                 }
             }
 
-            AddSql.executeInsert(currentTableName, colNames, userColValues);
+            ChangeSQL.executeUpdate(currentTableName, colNames, userColValues);
             loadTableColumns(currentTableName);
             onTableSelected.accept(currentTableName);
 
@@ -179,7 +179,7 @@ public class AddInventory extends GridPane {
 
                 TextField tf = new TextField();
                 tf.setPromptText("Enter " + colName);
-
+                
                 fieldContainer.add(tf, 1, row);
                 textFields.put(colName, tf);
 
@@ -197,4 +197,6 @@ public class AddInventory extends GridPane {
     public void setOnTableSelected(Consumer<String> callback) {
         this.onTableSelected = callback;
     }
+    
+    
 }

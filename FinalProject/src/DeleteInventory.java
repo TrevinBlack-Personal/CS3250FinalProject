@@ -1,14 +1,30 @@
+/*=======================================
+ *  Class for interaction in deleting rows from the database
+ *  
+ *  Constructor: 
+ *  	DeleteInventory() 	sets up the objects on this pane
+ *  
+ *  Methods:
+ *  	setOnTableSelected() 	Callback function for when table is selected from drop down menu
+ *  	setOnDeletePressed() 	Callback function for when deleting a row 
+ * =======================================
+ */
+
+import java.util.function.Consumer;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 public class DeleteInventory extends GridPane {
 	
+    private Consumer<String> onTableSelected; 	// Callback variable for table selection
+    private Runnable onDeletePressed; 			// Callback variable for when deleting a row
+
 	public DeleteInventory() {
 		
 		// Set gap between rows 15 pixels
@@ -22,33 +38,17 @@ public class DeleteInventory extends GridPane {
 		    "-fx-text-fill: #ffffff;"		);
 
         // Dropdown menu
-        ComboBox<String> searchOptions = new ComboBox<>();
-        searchOptions.getItems().addAll(
-            "employee",
-            "company",
-            "customer",
-            "equipment",
-            "fuel",
-            "inspection",
-            "invoice number",
-            "maintenance date",
-            "order date",
-            "part",
-            "record",
-            "sales order",
-            "schedule",
-            "vendor",
-            "work order"
-        );
-        
-        // Search field text field
-        TextField textField = new TextField();
-        textField.setStyle("-fx-margin:20;");
+        ComboBox<String> tableSelector = new ComboBox<>();
+        tableSelector.getItems().addAll(
+                "customer", "downtime", "employee", "equipment",
+                "fuel", "inspections", "invoice number", "maintenance",
+                "manager", "part", "purchase",
+                "sales", "schedule", "users", "vendor", "work order"
+            );
         
         
-        // Search and clear button
+        // Search button
         Button deleteButton = new Button("Delete");
-        Button clearButton = new Button ("Clear");
         
         // Create new HBox so buttons can be next to eachother
         HBox layout = new HBox();
@@ -62,26 +62,47 @@ public class DeleteInventory extends GridPane {
         	    "-fx-font-size: 10px;" +
         	    "-fx-font-weight: bold;" +
         	    "-fx-background-radius: 8;" +       // rounded corners
-        	    "-fx-padding: 8 20 8 20;"           // top right bottom left padding
-        	);
-
-        	clearButton.setStyle(
-        	    "-fx-background-color: #e74c3c;" +  // red background
-        	    "-fx-text-fill: white;" +
-        	    "-fx-font-size: 10px;" +
-        	    "-fx-font-weight: bold;" +
-        	    "-fx-background-radius: 8;" +
         	    "-fx-padding: 8 20 8 20;"
+        	    + "-fx-cursor: hand;"           
         	);
         
         // set margin to allow for space between buttons
         HBox.setMargin(deleteButton, new Insets(0,10 ,0,0));
-        layout.getChildren().addAll(deleteButton, clearButton);
+        layout.getChildren().add(deleteButton);
         
         // Add all the elements
         add(searchViaLabel, 0, 0);
-        add(searchOptions, 0, 1);
-        add(textField, 0, 2);
+        add(tableSelector, 0, 1);
         add(layout, 0,3);
+        
+        // Updates table view when user selects a table via callback
+        tableSelector.setOnAction(e -> {
+            String tableName = tableSelector.getValue();
+            if (tableName != null) {
+                if (onTableSelected != null) {
+                    onTableSelected.accept(tableName);
+                }
+            }
+        });
+        
+        // delete button event listener 
+        deleteButton.setOnAction(e ->{
+            if (onDeletePressed != null) {
+                onDeletePressed.run();
+            }
+        });
 	}
+	// on table selection issue callback - updates tableview
+	public void setOnTableSelected(Consumer<String> callback) {
+	    this.onTableSelected = callback;
+	}
+	
+	// on delete press issue callback - updates tableview for deleting a row
+    public void setOnDeletePressed(Runnable callback) {
+        this.onDeletePressed = callback;
+    }
 }
+
+
+
+

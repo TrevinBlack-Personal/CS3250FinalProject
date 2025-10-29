@@ -1,3 +1,11 @@
+/* =======================================
+ * Substantiates the pane for searching the database
+ * 
+ * Methods:
+ *      setOnSearch - Call back function for when user initiates a search
+ * =======================================
+ */
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -8,7 +16,6 @@ import java.util.function.BiConsumer;
 
 public class SearchInventory extends BorderPane {
 
-    private ComboBox<String> searchOptions;
     private TextField searchField;
 
     // Callback to send search term and option back to MainMenuPane
@@ -25,26 +32,17 @@ public class SearchInventory extends BorderPane {
 
         // Search label & combo box. Has an option so you can retrieve a record from every table
         Label searchLabel = new Label("Search By:");
-        searchOptions = new ComboBox<>();
-        
+	    searchLabel.setStyle("-fx-font-size: 18px;" +
+	    "-fx-font-weight: bold;" +
+	    "-fx-text-fill: #ffffff;"		);
+	    
+        ComboBox<String> searchOptions = new ComboBox<>();
         searchOptions.getItems().addAll(
-        	    "customer id",
-        	    "downtime log id",
-        	    "employee id",
-        	    "employee name",
-        	    "equipment name",
-        	    "fuel type",
-        	    "inspection id",
-        	    "invoice order id",
-        	    "maintenance record id",
-        	    "manager id",
-        	    "part name",
-        	    "purchase order id",
-        	    "sales order id",
-        	    "schedule id",
-        	    "vendor id",
-        	    "work order id"
-        	);
+            "customer", "downtime", "employee", "equipment",
+            "fuel", "inspections", "invoice number", "maintenance",
+            "manager", "part", "purchase",
+            "sales", "schedule", "users", "vendor", "work order"
+        );
  
         searchOptions.setValue(null);
 
@@ -55,7 +53,24 @@ public class SearchInventory extends BorderPane {
         // Buttons
         Button searchButton = new Button("Search");
         Button clearButton = new Button("Clear");
-
+        
+        searchButton.setStyle(        	   
+        		"-fx-background-color: #27ae60;" +   
+        	    "-fx-text-fill: white;" +           
+        	    "-fx-font-size: 10px;" +
+        	    "-fx-font-weight: bold;" +
+        	    "-fx-background-radius: 8;" +
+        	    "-fx-padding: 5;"
+        	    + "-fx-cursor: hand;");
+        
+        clearButton.setStyle(        		
+        		"-fx-background-color: #e74c3c;" +   
+        	    "-fx-text-fill: white;" +           
+        	    "-fx-font-size: 10px;" +
+        	    "-fx-font-weight: bold;" +
+        	    "-fx-background-radius: 8;" +       
+        	    "-fx-padding: 5;"
+        	    + "-fx-cursor: hand;");;
         // Button box for horizontal alignment
         HBox buttonBox = new HBox(10, searchButton, clearButton);
         buttonBox.setAlignment(Pos.CENTER);
