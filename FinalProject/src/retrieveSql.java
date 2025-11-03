@@ -52,9 +52,15 @@ public class retrieveSql {
             // SQL Query's and Switch case built mostly with Chat GPT. Because of the repetitive nature of this code I decided to use chat gpt to save my fingers the mileage.
                 // ----------------- Users & Employees -----------------------
                 case "employee":
-                    sql = "SELECT e.employeeId, u.name AS employeeName, u.email, e.department, e.salary " +
-                          "FROM employee e JOIN users u ON e.userId = u.id " +
-                          "WHERE employeeName LIKE '%" + searchTerm + "%'";
+                	sql = "SELECT e.employeeId, u.name AS employeeName, u.email, e.department, e.salary " +
+                		      "FROM employee e JOIN users u ON e.userId = u.id " +
+                		      "WHERE (" +
+                		      "e.employeeId LIKE '%" + searchTerm + "%' " +
+                		      "OR u.name LIKE '%" + searchTerm + "%' " +
+                		      "OR u.email LIKE '%" + searchTerm + "%' " +
+                		      "OR e.department LIKE '%" + searchTerm + "%' " +
+                		      "OR e.salary LIKE '%" + searchTerm + "%')";
+
                     break;
 
                 case "manager":
