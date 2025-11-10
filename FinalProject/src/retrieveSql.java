@@ -51,48 +51,96 @@ public class retrieveSql {
 
             // SQL Query's and Switch case built mostly with Chat GPT. Because of the repetitive nature of this code I decided to use chat gpt to save my fingers the mileage.
                 // ----------------- Users & Employees -----------------------
-                case "employee":
-                	sql = "SELECT e.employeeId, u.name AS employeeName, u.email, e.department, e.salary " +
-                		      "FROM employee e JOIN users u ON e.userId = u.id " +
-                		      "WHERE (" +
-                		      "e.employeeId LIKE '%" + searchTerm + "%' " +
-                		      "OR u.name LIKE '%" + searchTerm + "%' " +
-                		      "OR u.email LIKE '%" + searchTerm + "%' " +
-                		      "OR e.department LIKE '%" + searchTerm + "%' " +
-                		      "OR e.salary LIKE '%" + searchTerm + "%')";
+            case "employee":
+                sql = "SELECT e.employeeId, e.userId, u.name, e.department, e.salary " +
+                      "FROM employee e " +
+                	  "INNER JOIN users u ON e.userId = u.id " +
+                      "WHERE (" +
+                	  "CAST(u.name AS TEXT) LIKE '%" + searchTerm + "%' OR " +
+                      "CAST(e.employeeId AS TEXT) LIKE '%" + searchTerm + "%' OR " +
+                      "LOWER(e.department) LIKE LOWER('%" + searchTerm + "%') OR " +
+                      "CAST(e.salary AS TEXT) LIKE '%" + searchTerm + "%'" +
+                      ")";
+                break;
 
-                    break;
 
                 case "manager":
                     sql = "SELECT m.managerId, m.employeeId, m.teamSize, m.level, u.name AS employeeName " +
-                          "FROM manager m JOIN employee e ON m.employeeId = e.employeeId " +
-                          "JOIN users u ON e.userId = u.id " +
-                          "WHERE m.managerId LIKE '%" + searchTerm + "%'";
+                          "FROM manager m " +
+                    	  "INNER JOIN employee e ON m.employeeId = e.employeeId " +
+                          "INNER JOIN users u ON e.userId = u.id " +
+                          "WHERE (" +
+                           "CAST(m.managerId AS TEXT) LIKE '%" + searchTerm + "%' OR "+
+                           "CAST(m.employeeId AS TEXT) LIKE '%" + searchTerm + "%' OR "+
+                           "CAST(m.teamSize AS TEXT) LIKE '%" + searchTerm + "%' OR "+
+                           "CAST(m.level AS TEXT) LIKE '%" + searchTerm + "%' OR "+
+                           "CAST(u.name AS TEXT) LIKE '%" + searchTerm + "%' "+
+                          ")";
                     break;
 
                 case "customer":
                     sql = "SELECT c.customerId, u.name, u.email, c.address, c.phoneNumber " +
-                          "FROM customer c JOIN users u ON c.userId = u.id " +
-                          "WHERE c.customerId LIKE '%" + searchTerm + "%'";
+                          "FROM customer c " +
+                          "INNER JOIN users u ON c.userId = u.id " +
+                          "WHERE (" +
+                          "CAST (c.customerId AS TEXT) LIKE '%" + searchTerm + "%' OR " +                          
+                          "CAST (u.name AS TEXT) LIKE '%" + searchTerm + "%' OR " +
+                          "CAST (u.email AS TEXT) LIKE '%" + searchTerm + "%' OR " +
+                          "CAST (c.address AS TEXT) LIKE '%" + searchTerm + "%' OR " +
+                          "CAST (c.phoneNumber AS TEXT) LIKE '%" + searchTerm + "%' " +
+                          ")";
+
                     break;
 
                 case "vendor":
                     sql = "SELECT v.vendorId, u.name, u.email, v.companyName, v.productCategory " +
                           "FROM vendor v JOIN users u ON v.userId = u.id " +
-                          "WHERE v.vendorId LIKE '%" + searchTerm + "%'";
+                          "WHERE (" +
+                          "CAST (v.vendorId AS TEXT) LIKE '%" + searchTerm + "%' OR " +
+                          "CAST (u.name AS TEXT) LIKE '%" + searchTerm + "%' OR " +
+                          "CAST (u.email AS TEXT) LIKE '%" + searchTerm + "%' OR " +
+                          "CAST (v.companyName AS TEXT) LIKE '%" + searchTerm + "%' OR " +
+                          "CAST (v.productCategory AS TEXT) LIKE '%" + searchTerm + "%' " +
+                          ")";
+
                     break;
 
                 // ----------------- Core Inventory -----------------------
                 case "equipment":
-                    sql = "SELECT * FROM equipment WHERE name LIKE '%" + searchTerm + "%'";
+                    sql = "SELECT e.equipmentId, e.name, e.type, e.quantity, e.status"
+                    		+ " FROM equipment e"
+                    		+ " WHERE ( "
+                    		+ "CAST (e.equipmentId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                    		+ "CAST (e.name AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                    		+ "CAST (e.type AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                    		+ "CAST (e.quantity AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                    		+ "CAST (e.status AS TEXT) LIKE '%" + searchTerm + "%'" 
+                    		+ ")";
+
                     break;
 
                 case "spareparts":
-                    sql = "SELECT * FROM spareparts WHERE name LIKE '%" + searchTerm + "%'";
+                    sql = "SELECT sp.partId, sp.name, sp.quantityInStock, sp.cost"
+                    		+ " FROM spareparts sp"
+                    		+ " WHERE ("
+                    		+ "CAST (sp.partId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                    		+ "CAST (sp.name AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                    		+ "CAST (sp.quantityInStock AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                    		+ "CAST (sp.cost AS TEXT) LIKE '%" + searchTerm + "%' "
+                    		+ ")";
+
                     break;
 
                 case "fuel":
-                    sql = "SELECT * FROM fuel WHERE fuelType LIKE '%" + searchTerm + "%'";
+                    sql = "SELECT f.fuelId, f.fuelType, f.quantity, f.costPerUnit"
+                    		+ " FROM fuel f"
+                    		+ " WHERE ( "
+                    		+ "CAST (f.fuelId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                    		+ "CAST (f.fuelType AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                    		+ "CAST (f.quantity AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                    		+ "CAST (f.costPerUnit AS TEXT) LIKE '%" + searchTerm + "%' "
+                    		+ ")";
+
                     break;
 
                 // ----------------- Maintenance Logs -----------------------

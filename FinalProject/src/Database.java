@@ -196,7 +196,7 @@ public class Database {
                 "userId INTEGER NOT NULL," +                        
                 "department TEXT," +
                 "salary REAL," +
-                "FOREIGN KEY (userId) REFERENCES user(id)" +
+                "FOREIGN KEY (userId) REFERENCES users(id)" +
                 ");";
 
         stmt.execute(EmployeeTable);
@@ -220,7 +220,7 @@ public class Database {
                 "userId INTEGER NOT NULL," +
                 "address TEXT," +
                 "phoneNumber TEXT," +
-                "FOREIGN KEY (userId) REFERENCES user(id)" +
+                "FOREIGN KEY (userId) REFERENCES users(id)" +
                 ");";
 
         stmt.execute(CustomerTable);
@@ -232,7 +232,7 @@ public class Database {
                 "userId INTEGER NOT NULL," +
                 "companyName TEXT," +
                 "productCategory TEXT," +
-                "FOREIGN KEY (userId) REFERENCES user(id)" +
+                "FOREIGN KEY (userId) REFERENCES users(id)" +
                 ");";
 
         stmt.execute(VendorTable);

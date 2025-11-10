@@ -30,9 +30,10 @@ public class MainMenuPane extends BorderPane {
                 setLeft(searchInventory);
 
                 // Connect callback to ResultsPane for search property
-                searchInventory.setOnSearch((term, option) -> {
-                    resultsPane.displayResults(option, "%" + term + "%");
+                searchInventory.setOnSearch((tableName, searchTerm) -> {
+                    resultsPane.displayResults(tableName, searchTerm);
                 });
+
             }
             case "Add" -> {
                 AddInventory addInventory = new AddInventory();

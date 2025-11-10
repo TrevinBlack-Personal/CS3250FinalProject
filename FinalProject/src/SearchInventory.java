@@ -12,15 +12,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import java.util.function.BiConsumer; 
+import java.util.function.BiConsumer;
 
 public class SearchInventory extends BorderPane {
 
     private TextField searchField;
+    private ComboBox<String> tableSelector;
 
-    // Callback to send search term and option back to MainMenuPane
+    // Use BiConsumer so we can pass both table name and search term
     private BiConsumer<String, String> onSearch;
-    
 
     public SearchInventory() {
         setPadding(new Insets(20));
@@ -30,76 +30,84 @@ public class SearchInventory extends BorderPane {
         searchPane.setHgap(10);
         searchPane.setAlignment(Pos.TOP_CENTER);
 
-        // Search label & combo box. Has an option so you can retrieve a record from every table
+        // Search label & combo box
         Label searchLabel = new Label("Search By:");
-	    searchLabel.setStyle("-fx-font-size: 18px;" +
-	    "-fx-font-weight: bold;" +
-	    "-fx-text-fill: #ffffff;"		);
-	    
-        ComboBox<String> searchOptions = new ComboBox<>();
-        searchOptions.getItems().addAll(
+        searchLabel.setStyle("-fx-font-size: 18px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: #ffffff;");
+
+        tableSelector = new ComboBox<>();
+        tableSelector.getItems().addAll(
             "customer", "downtime", "employee", "equipment",
             "fuel", "inspections", "invoice number", "maintenance",
             "manager", "part", "purchase",
             "sales", "schedule", "users", "vendor", "work order"
         );
- 
-        searchOptions.setValue(null);
+        tableSelector.setValue(null);
 
-        // Search box: Holds the value of what the user may want to search for
+        // Search text field
         searchField = new TextField();
-        searchField.setPromptText("Type Here"); 
+        searchField.setPromptText("Type Here");
 
         // Buttons
         Button searchButton = new Button("Search");
         Button clearButton = new Button("Clear");
-        
-        searchButton.setStyle(        	   
-        		"-fx-background-color: #27ae60;" +   
-        	    "-fx-text-fill: white;" +           
-        	    "-fx-font-size: 10px;" +
-        	    "-fx-font-weight: bold;" +
-        	    "-fx-background-radius: 8;" +
-        	    "-fx-padding: 5;"
-        	    + "-fx-cursor: hand;");
-        
-        clearButton.setStyle(        		
-        		"-fx-background-color: #e74c3c;" +   
-        	    "-fx-text-fill: white;" +           
-        	    "-fx-font-size: 10px;" +
-        	    "-fx-font-weight: bold;" +
-        	    "-fx-background-radius: 8;" +       
-        	    "-fx-padding: 5;"
-        	    + "-fx-cursor: hand;");;
-        // Button box for horizontal alignment
+
+        searchButton.setStyle(
+            "-fx-background-color: #27ae60;" +
+            "-fx-text-fill: white;" +
+            "-fx-font-size: 10px;" +
+            "-fx-font-weight: bold;" +
+            "-fx-background-radius: 8;" +
+            "-fx-padding: 5;" +
+            "-fx-cursor: hand;"
+        );
+
+        clearButton.setStyle(
+            "-fx-background-color: #e74c3c;" +
+            "-fx-text-fill: white;" +
+            "-fx-font-size: 10px;" +
+            "-fx-font-weight: bold;" +
+            "-fx-background-radius: 8;" +
+            "-fx-padding: 5;" +
+            "-fx-cursor: hand;"
+        );
+
         HBox buttonBox = new HBox(10, searchButton, clearButton);
         buttonBox.setAlignment(Pos.CENTER);
 
-        // Add all items 
         searchPane.add(searchLabel, 0, 0);
-        searchPane.add(searchOptions, 0, 1);
+        searchPane.add(tableSelector, 0, 1);
         searchPane.add(searchField, 0, 2);
         searchPane.add(buttonBox, 0, 3);
 
         setCenter(searchPane);
 
         // ------------------ Button Actions ------------------
-        // Call back function to pass the values back to MainMenuPane to the results pane can properly update
         searchButton.setOnAction(e -> {
-            String term = searchField.getText();
-            String option = searchOptions.getValue();
-            if (onSearch != null) {
-                onSearch.accept(term, option); // Trigger the callback
+            String tableName = tableSelector.getValue();
+            String searchTerm = searchField.getText();
+
+            if (tableName != null && onSearch != null) {
+                switch (tableName) {
+                    case "maintenance" -> tableName = "maintenancelog";
+                    case "part" -> tableName = "spareparts";
+                    case "purchase" -> tableName = "purchaseorder";
+                    case "sales" -> tableName = "salesorder";
+                    case "work order" -> tableName = "workorder";
+                    case "invoice number" -> tableName = "invoice";
+                }
+
+                // 🔹 Pass both tableName and searchTerm to callback
+                onSearch.accept(tableName, searchTerm);
             }
         });
 
         clearButton.setOnAction(e -> searchField.clear());
     }
 
-    // Setter for the callback - on search
+    // Setter for callback
     public void setOnSearch(BiConsumer<String, String> callback) {
         this.onSearch = callback;
     }
-    
-
 }

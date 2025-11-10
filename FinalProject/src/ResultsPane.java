@@ -41,6 +41,8 @@ public class ResultsPane extends BorderPane {
         // Get query for this table
         String sql = retrieveSql.getQuery(searchOption, searchTerm);
 
+        System.out.println(sql);
+        
         try (Connection conn = Database.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -85,6 +87,8 @@ public class ResultsPane extends BorderPane {
             }
 
             tableView.setItems(data);
+            System.out.println("Results found: " + data.size());
+
 
         } catch (Exception e) {
             e.printStackTrace();
