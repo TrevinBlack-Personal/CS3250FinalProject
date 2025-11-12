@@ -144,33 +144,76 @@ public class retrieveSql {
                     break;
 
                 // ----------------- Maintenance Logs -----------------------
-                case "maintenance":
+                case "maintenancelog":
                     sql = "SELECT m.recordId, e.name AS equipmentName, m.maintenanceDate, m.description, m.performedBy, m.fuelType, m.quantity, m.costPerUnit " +
-                          "FROM maintenancelog m JOIN equipment e ON m.equipmentId = e.equipmentId " +
-                          "WHERE m.recordId LIKE '%" + searchTerm + "%'";
+                          "FROM maintenancelog m "
+                          + "INNER JOIN equipment e ON m.equipmentId = e.equipmentId " +
+                          "WHERE ("
+                          + " CAST (m.recordId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (e.name AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (m.maintenanceDate AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (m.description AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (m.performedBy AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (m.fuelType AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (m.quantity AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (m.costPerUnit AS TEXT) LIKE '%" + searchTerm + "%'"
+                    	  + ")";
                     break;
 
-                case "inspection":
+                case "inspections":
                     sql = "SELECT i.inspectionId, e.name AS equipmentName, i.inspectionDate, i.inspectorName, i.description, i.passed " +
-                          "FROM inspections i JOIN equipment e ON i.equipmentId = e.equipmentId " +
-                          "WHERE i.inspectionId LIKE '%" + searchTerm + "%'";
+                          "FROM inspections i INNER JOIN equipment e ON i.equipmentId = e.equipmentId " +
+                          "WHERE ("
+                          + " CAST (i.inspectionId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (e.name AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (i.inspectionDate AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (i.inspectorName AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (i.description AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (i.passed AS TEXT) LIKE '%" + searchTerm + "%'"
+                    	  + ")";
+
                     break;
 
                 case "schedule":
                     sql = "SELECT s.scheduleId, e.name AS equipmentName, s.scheduleDate, s.taskType, s.assignedTo " +
-                          "FROM schedule s JOIN equipment e ON s.equipmentId = e.equipmentId " +
-                          "WHERE s.scheduleId LIKE '%" + searchTerm + "%'";
+                          "FROM schedule s INNER JOIN equipment e ON s.equipmentId = e.equipmentId " +
+                          "WHERE ("
+                          + " CAST (s.scheduleId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (e.name AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (s.scheduleDate AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (s.taskType AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (s.assignedTo AS TEXT) LIKE '%" + searchTerm + "%' "
+                    	  + ")";
+
                     break;
 
                 case "downtime":
                     sql = "SELECT d.logId, e.name AS equipmentName, d.startTime, d.endTime, d.reason, d.duration " +
-                          "FROM downtime d JOIN equipment e ON d.equipmentId = e.equipmentId " +
-                          "WHERE d.logId LIKE '%" + searchTerm + "%'";
+                          "FROM downtime d INNER JOIN equipment e ON d.equipmentId = e.equipmentId " +
+                          "WHERE ("
+                          + " CAST (d.logId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (e.name AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (d.startTime AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (d.endTime AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (d.reason AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (d.duration AS TEXT) LIKE '%" + searchTerm + "%' "
+                    	  + ")";
+
                     break;
 
                 // ----------------- Transaction Records -----------------------
                 case "work order":
-                    sql = "SELECT * FROM workorder WHERE orderId LIKE '%" + searchTerm + "%'";
+                    sql = "SELECT w.orderId, w.orderDate, w.status, w.totalAmount, w.description, w.assignedEmployee, w.dueDate"
+                    		+ " FROM workorder w WHERE ("
+                            + " CAST (w.orderId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (w.orderDate AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (w.status AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (w.totalAmount AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (w.description AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (w.assignedEmployee AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (w.dueDate AS TEXT) LIKE '%" + searchTerm + "%' "
+                    	  + ")";
+
                     break;
 
                 case "sales":
@@ -180,8 +223,8 @@ public class retrieveSql {
                           "WHERE so.orderId LIKE '%" + searchTerm + "%'";
                     break;
 
-                case "invoice number":
-                    sql = "SELECT * FROM invoice WHERE orderId LIKE '%" + searchTerm + "%'";
+                case "invoice":
+                    sql = "SELECT i.orderId, i.orderDate, i.status, i.totalAmount, i.invoiceNumber,  FROM invoice WHERE orderId LIKE '%" + searchTerm + "%'";
                     break;
 
                 case "purchase order":
