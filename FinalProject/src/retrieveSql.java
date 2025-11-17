@@ -202,7 +202,7 @@ public class retrieveSql {
                     break;
 
                 // ----------------- Transaction Records -----------------------
-                case "work order":
+                case "workorder":
                     sql = "SELECT w.orderId, w.orderDate, w.status, w.totalAmount, w.description, w.assignedEmployee, w.dueDate"
                     		+ " FROM workorder w WHERE ("
                             + " CAST (w.orderId AS TEXT) LIKE '%" + searchTerm + "%' OR "
@@ -216,21 +216,52 @@ public class retrieveSql {
 
                     break;
 
-                case "sales":
-                    sql = "SELECT so.orderId, so.orderDate, so.status, so.totalAmount, u.name AS customerName " +
-                          "FROM salesorder so JOIN customer c ON so.customerId = c.customerId " +
-                          "JOIN users u ON c.userId = u.id " +
-                          "WHERE so.orderId LIKE '%" + searchTerm + "%'";
+                case "salesorder":
+                    sql = "SELECT so.orderId, so.orderDate, so.status, so.totalAmount, u.name AS customerName, so.shippingAddress, so.paymentMethod " +
+                          "FROM salesorder so "
+                          + "INNER JOIN customer c ON so.customerId = c.customerId " +
+                          "INNER JOIN users u ON c.userId = u.id " +
+                          "WHERE ("
+                          + " CAST (so.orderId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (so.orderDate AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (so.status AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (so.totalAmount AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (u.name AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (so.shippingAddress AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (so.paymentMethod AS TEXT) LIKE '%" + searchTerm + "%' "
+
+                    	  + ")";
+
                     break;
 
                 case "invoice":
-                    sql = "SELECT i.orderId, i.orderDate, i.status, i.totalAmount, i.invoiceNumber,  FROM invoice WHERE orderId LIKE '%" + searchTerm + "%'";
+                    sql = "SELECT i.orderId, i.orderDate, i.status, i.totalAmount, i.invoiceNumber i.dueDate, i.paid"
+                    		+ "  FROM invoice i WHERE ("
+                            + " CAST (i.orderId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (i.orderDate AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (i.status AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (i.totalAmount AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (i.invoiceNumber AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (i.dueDate AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                            + " CAST (i.paid AS TEXT) LIKE '%" + searchTerm + "%' "
+                    	  + ")";
+
                     break;
 
-                case "purchase order":
+                    // TODO : Fix syntax ERROR 
+                case "purchaseorder":
                     sql = "SELECT po.orderId, po.orderDate, po.status, po.totalAmount, v.companyName AS vendorName, po.expectedDeliveryDate, po.shippingMethod " +
-                          "FROM purchaseorder po JOIN vendor v ON po.vendorId = v.vendorId " +
-                          "WHERE po.orderId LIKE '%" + searchTerm + "%'";
+                          "FROM purchaseorder po INNER JOIN vendor v ON po.vendorId = v.vendorId " +
+                          "WHERE ("
+                          + " CAST (po.orderId AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (po.orderDate AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (po.status AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (po.totalAmount AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (v.companyName AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (po.expectedDeliveryDate AS TEXT) LIKE '%" + searchTerm + "%' OR "
+                          + " CAST (po.shippingMethod AS TEXT) LIKE '%" + searchTerm + "%' "
+                    	  + ")";
+
                     break;
 
                 default:
