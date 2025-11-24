@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 public class loginValidation {
 
     public static String validateLogin(String Username, String Password) {
-        String sql = "SELECT u.name FROM users u WHERE u.email = ? AND u.password = ?";
+        String sql = "SELECT u.name FROM users u  WHERE u.email = ? AND u.password = ?";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) { // Connect to database

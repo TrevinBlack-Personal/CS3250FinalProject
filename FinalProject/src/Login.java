@@ -9,10 +9,12 @@
  *  	openMainMenuUser() 		Logs into the system using a user login
  * =======================================
  */
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,12 +31,30 @@ public class Login extends BorderPane {
 		VBox topPane = new VBox();
 		topPane.setPrefHeight(50);
 		
+        TextArea stickyNote = new TextArea("Login Info: \n\t"
+        		+ "Manager: \n\t"
+        		+ "	UserName: $$$, \t"
+        		+ " Password: $$$ \n\t"
+        		+ "User: \n\t"
+        		+ "	UserName: ###, \t"
+        		+ " Password: ###");
+        stickyNote.setWrapText(true);
+        
+        stickyNote.getStyleClass().add("sticky-note"); 
+        VBox.setMargin(stickyNote, new Insets(0, 20, 0, 20));
+        
+        
+        topPane.getStylesheets().add(getClass().getResource("stickyNote.css").toExternalForm());
+        topPane.getChildren().add(stickyNote);
+        
 		Image logo = new Image("Mining Company Logo.png");
 		ImageView logoView = new ImageView(logo);
 		logoView.setFitHeight(200);
 		logoView.setFitWidth(200);
+		VBox.setMargin(logoView, new Insets(50, 0, 0, 0)); 
 		topPane.setAlignment(Pos.BASELINE_CENTER);
 		topPane.getChildren().add(logoView);
+		
 		
 		setTop(topPane);
 		
