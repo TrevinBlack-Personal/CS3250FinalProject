@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 
 public class NavigationBar extends HBox {
 
-    public NavigationBar(String username) {
+    public NavigationBar(String username, Boolean isManager) {
         // Welcome label
         Label welcomeLabel = new Label("Welcome, " + username + "!");
         welcomeLabel.setStyle("-fx-padding:20;");
@@ -72,25 +72,25 @@ public class NavigationBar extends HBox {
         	getChildren().addAll(welcomeLabel, searchBtn, addBtn, deleteBtn, changeBtn);
         }
         else {
-        	getChildren().addAll(welcomeLabel, searchBtn, addBtn, deleteBtn, changeBtn); // Remove add and delete for guest user
+        	getChildren().addAll(welcomeLabel, searchBtn); // Remove add and delete for guest user
         }
         
         // Scene switch listener
         crudButtons.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
             if (newToggle != null) {
                 String menuType = newToggle.getUserData().toString(); // Grabs "Search" , "Add", || "Delete" from user data for indexing what new page to open
-                switchScene(menuType, username);
+                switchScene(menuType, username, isManager);
             }
         });
     }
 
     // Switch scenes based on button pressed - Search, Add, Delete
-    private void switchScene(String menuType, String username) {
+    private void switchScene(String menuType, String username, Boolean isManager) {
         // Get the current stage from any node in NavigationBar
         Stage stage = (Stage) getScene().getWindow();
 
         // Replace the scene
-        Scene scene = new Scene(new MainMenuPane(username, menuType), 500, 500);
+        Scene scene = new Scene(new MainMenuPane(username, menuType, isManager), 500, 500);
         stage.setScene(scene);
         stage.setTitle(menuType);
     }

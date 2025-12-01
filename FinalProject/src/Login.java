@@ -14,7 +14,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,22 +29,6 @@ public class Login extends BorderPane {
 		// Top Pane
 		VBox topPane = new VBox();
 		topPane.setPrefHeight(50);
-		
-        TextArea stickyNote = new TextArea("Login Info: \n\t"
-        		+ "Manager: \n\t"
-        		+ "	UserName: $$$, \t"
-        		+ " Password: $$$ \n\t"
-        		+ "User: \n\t"
-        		+ "	UserName: ###, \t"
-        		+ " Password: ###");
-        stickyNote.setWrapText(true);
-        
-        stickyNote.getStyleClass().add("sticky-note"); 
-        VBox.setMargin(stickyNote, new Insets(0, 20, 0, 20));
-        
-        
-        topPane.getStylesheets().add(getClass().getResource("stickyNote.css").toExternalForm());
-        topPane.getChildren().add(stickyNote);
         
 		Image logo = new Image("Mining Company Logo.png");
 		ImageView logoView = new ImageView(logo);
@@ -114,8 +97,12 @@ public class Login extends BorderPane {
 
 	// Login the guest
 	private void openMainMenuGuest() {
+		
+		SeederMain.runSeeder(false);
+		
 	    Stage mainMenu = (Stage) getScene().getWindow();
-	    Scene scene = new Scene(new MainMenuPane("Guest", "Search"), 500, 500); // Create the scene with your pane
+	    Scene scene = new Scene(new MainMenuPane("Guest", "Search", false), 500, 500); // Create the scene with your pane
+	    
 	    
 	    mainMenu.setScene(scene);
 	    mainMenu.setTitle("Main Menu");
@@ -125,9 +112,14 @@ public class Login extends BorderPane {
 	// Login the user 
 	private void openMainMenuUser(String Email, String Password) {
 	    String name = loginValidation.validateLogin(Email, Password);
+	    Boolean isManager = loginValidation.checkManager(Email, Password);
+	    
 		if (name != null) {
+			
+			SeederMain.runSeeder(isManager);
+			
 			Stage mainMenu = (Stage) getScene().getWindow();
-		    Scene scene = new Scene(new MainMenuPane(name, "Search"), 500, 500); // Create the scene with your pane
+		    Scene scene = new Scene(new MainMenuPane(name, "Search", isManager), 500, 500); // Create the scene with your pane
 		    
 		    mainMenu.setScene(scene);
 		    mainMenu.setTitle("Main Menu");

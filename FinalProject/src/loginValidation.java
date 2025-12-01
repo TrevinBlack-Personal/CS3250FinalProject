@@ -28,6 +28,8 @@ public class loginValidation {
             ResultSet rs = pstmt.executeQuery(); // Results of query
 
             if (rs.next()) { // Move to next column
+            	System.out.println(Username);
+            	System.out.println(Password);
                 return rs.getString("name"); // get the user's name
             } else {
                 return null; // no match found
@@ -39,4 +41,31 @@ public class loginValidation {
             return null;
         }
     }
+    
+    public static Boolean checkManager(String username, String password) {
+
+        String sql = """
+            SELECT m.managerId
+            FROM manager m
+            INNER JOIN employee e ON e.employeeId = m.employeeId
+            INNER JOIN users u ON u.id = e.userId
+            WHERE u.email = ? AND u.password = ?
+        """;
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next(); // manager exists
+        } catch (Exception e) {
+            System.out.println("An Error has occurred. checkManager");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

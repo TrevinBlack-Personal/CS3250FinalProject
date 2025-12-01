@@ -22,7 +22,7 @@ public class SearchInventory extends BorderPane {
     // Use BiConsumer so we can pass both table name and search term
     private BiConsumer<String, String> onSearch;
 
-    public SearchInventory() {
+    public SearchInventory(Boolean isManager) {
         setPadding(new Insets(20));
 
         GridPane searchPane = new GridPane();
@@ -37,12 +37,7 @@ public class SearchInventory extends BorderPane {
                 "-fx-text-fill: #ffffff;");
 
         tableSelector = new ComboBox<>();
-        tableSelector.getItems().addAll(
-            "customer", "downtime", "employee", "equipment",
-            "fuel", "inspections", "invoice number", "maintenance",
-            "manager", "part", "purchase",
-            "sales", "schedule", "users", "vendor", "work order"
-        );
+        loadRoleTables(isManager);
         tableSelector.setValue(null);
 
         // Search text field
@@ -98,7 +93,7 @@ public class SearchInventory extends BorderPane {
                     case "invoice number" -> tableName = "invoice";
                 }
 
-                // 🔹 Pass both tableName and searchTerm to callback
+                
                 onSearch.accept(tableName, searchTerm);
             }
         });
@@ -110,4 +105,29 @@ public class SearchInventory extends BorderPane {
     public void setOnSearch(BiConsumer<String, String> callback) {
         this.onSearch = callback;
     }
+    
+    private void loadRoleTables(Boolean isManager) {
+
+        if (isManager) {
+            tableSelector.getItems().addAll(
+                    "customer", "downtime", "employee", "equipment",
+                    "fuel", "inspections", "invoice number", "maintenance",
+                    "manager", "part", "purchase", "sales",
+                    "schedule", "users", "vendor", "work order"
+                );
+            
+            return;
+        }
+        
+        tableSelector.getItems().addAll(
+                "customer", "equipment",
+                "fuel", "invoice number",
+                "part", "purchase", "sales", 
+                 "vendor", "work order"
+            );
+        
+        return;
+        
+    }
+
 }

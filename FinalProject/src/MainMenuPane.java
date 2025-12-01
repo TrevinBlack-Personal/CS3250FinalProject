@@ -9,9 +9,9 @@ import javafx.scene.layout.Pane;
 
 public class MainMenuPane extends BorderPane {
 
-    public MainMenuPane(String Username, String menuType) {
+    public MainMenuPane(String Username, String menuType, Boolean isManager) {
         // Top Pane - navigation
-        NavigationBar navigationBar = new NavigationBar(Username);
+        NavigationBar navigationBar = new NavigationBar(Username, isManager);
         navigationBar.setAlignment(Pos.BASELINE_CENTER);
         navigationBar.setPrefHeight(25);
         setTop(navigationBar);
@@ -24,7 +24,7 @@ public class MainMenuPane extends BorderPane {
         // Left Pane - menu selection
         switch (menuType) {
             case "Search" -> {
-                SearchInventory searchInventory = new SearchInventory();
+                SearchInventory searchInventory = new SearchInventory(isManager);
                 searchInventory.setStyle("-fx-background-color:#4682B4; -fx-border-color:black");
                 searchInventory.setPrefWidth(150);
                 setLeft(searchInventory);

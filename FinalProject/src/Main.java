@@ -13,8 +13,8 @@ public class Main extends Application {
 
         // Initialize database once when app starts
 
-        // TO DO : Modify Seeder so that it loads once the person logs in. Based on user/ guest / or manager
-        //SeederMain.runSeeder();
+        // Creates User, Manager, Employee tables for login
+        SeederMain.firstRun();
 
         launch();
     }
