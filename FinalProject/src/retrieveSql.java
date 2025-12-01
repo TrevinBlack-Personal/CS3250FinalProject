@@ -235,7 +235,7 @@ public class retrieveSql {
                     break;
 
                 case "invoice":
-                    sql = "SELECT i.orderId, i.orderDate, i.status, i.totalAmount, i.invoiceNumber i.dueDate, i.paid"
+                    sql = "SELECT i.orderId, i.orderDate, i.status, i.totalAmount, i.invoiceNumber, i.dueDate, i.paid"
                     		+ "  FROM invoice i WHERE ("
                             + " CAST (i.orderId AS TEXT) LIKE '%" + searchTerm + "%' OR "
                             + " CAST (i.orderDate AS TEXT) LIKE '%" + searchTerm + "%' OR "

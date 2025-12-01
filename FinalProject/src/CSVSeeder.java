@@ -28,8 +28,11 @@ public class CSVSeeder {
             boolean skipHeader = true;
 
             while ((line = br.readLine()) != null) {
-                if (line.startsWith("#") || line.trim().isEmpty()) continue; // skip comments/empty lines
-                if (skipHeader) { skipHeader = false; continue; }			 // skip header AKA column names
+                if (line.startsWith("#") || line.trim().isEmpty())
+                	continue; 												 // skip comments/empty lines
+                if (skipHeader) { 
+                	skipHeader = false; continue;							// skip header AKA column names
+                }			 
 
                 String[] parts = line.split(",");							 // split lines on comma
 

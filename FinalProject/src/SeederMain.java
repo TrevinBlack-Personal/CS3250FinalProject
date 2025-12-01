@@ -1,15 +1,28 @@
+/* =========================================================
+ * Seeder main files. Populates the database with the CSV files
+ * 
+ * Methods:
+ *  	firstRun - Runs on first run. Populates the employee, user, and manager table so that you can login
+ *  	tableHasData - Checks a table to see if it is already populated with data
+ *  		ARGS: table name
+ *  	runSeeder - seeds the database based on whether or not its a manger or user login
+ *  		ARGS: isManager Boolean that tells if user is a manager
+ *  
+ *  	seedManagerData: Seeds entire database unrestricted
+ *  	seedUserData: seeds restricted database
+ *  ========================================================
+ */			
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class SeederMain {
 
-    /* =====================================================
-     * FIRST RUN — SEED ONLY LOGIN TABLES
-     * ===================================================== */
+    // FIRST RUN — SEED ONLY LOGIN TABLES
     public static void firstRun() {
 
-        // Create tables (if not exist)
+        // Create tables
         Database.initializeDatabase(false);
 
         // If users table already has records skip
@@ -44,9 +57,7 @@ public class SeederMain {
         System.out.println("Base login tables seeded.");
     }
 
-    /* =====================================================
-     * CHECK IF TABLE HAS ANY ROWS
-     * ===================================================== */
+    // CHECK IF TABLE HAS ANY ROWS
     private static boolean tableHasData(String tableName) {
         String sql = "SELECT COUNT(*) AS count FROM " + tableName;
 
@@ -62,12 +73,10 @@ public class SeederMain {
         }
     }
 
-    /* =====================================================
-     * RUN SEEDER AFTER LOGIN
-     * ===================================================== */
+    // Run seeder after login
     public static void runSeeder(boolean isManager) {
 
-        // If equipment table already has data → reset DB and reseed
+        // If equipment table already has data reset database
         if (tableHasData("equipment")) {
             System.out.println("Database already seeded. Resetting...");
             Database.reset(isManager);
@@ -91,9 +100,8 @@ public class SeederMain {
     }
 
 
-    /* =====================================================
-     * MANAGER SEEDING — FULL DATABASE
-     * ===================================================== */
+
+    // MANAGER SEEDING — FULL DATABASE
     private static void seedManagerData() {
 
         // Equipment
@@ -156,9 +164,8 @@ public class SeederMain {
                 "INSERT INTO vendor(vendorId,userId,companyName,productCategory) VALUES (?,?,?,?)", 4);
     }
 
-    /* =====================================================
-     * REGULAR USER SEEDING — LIMITED TABLES
-     * ===================================================== */
+    
+    // REGULAR USER SEEDING — LIMITED TABLES
     private static void seedUserData() {
 
         // Equipment

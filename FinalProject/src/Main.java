@@ -12,8 +12,6 @@ public class Main extends Application {
         System.out.println("Welcome to my final project!");
 
         // Initialize database once when app starts
-
-        // Creates User, Manager, Employee tables for login
         SeederMain.firstRun();
 
         launch();

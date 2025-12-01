@@ -88,9 +88,11 @@ public class NavigationBar extends HBox {
     private void switchScene(String menuType, String username, Boolean isManager) {
         // Get the current stage from any node in NavigationBar
         Stage stage = (Stage) getScene().getWindow();
-
+        double width = stage.getWidth();
+        double height = stage.getHeight();
+        
         // Replace the scene
-        Scene scene = new Scene(new MainMenuPane(username, menuType, isManager), 500, 500);
+        Scene scene = new Scene(new MainMenuPane(username, menuType, isManager), width, height);
         stage.setScene(scene);
         stage.setTitle(menuType);
     }

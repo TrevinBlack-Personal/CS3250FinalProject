@@ -1,3 +1,13 @@
+/* ========================================================
+ * Database file that creates inventory.db & tables based on user login
+ * 
+ * methods:
+ * 		initializeDatabase - sets up the database (creates inventory.db) and calls for table creation
+ * 		createLoginTables - sets up login tables (User, Employee, Manager)
+ * 		
+ * ========================================================
+ */
+
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,22 +24,16 @@ public class Database {
             System.out.println("Database connected!");
             Statement stmt = conn.createStatement();
 
-            // --------------------------------------------------
-            //  ALWAYS CREATE LOGIN-RELATED TABLES FIRST
+            //  Create log in related tables
             //  (Users, Employee, Manager)
-            // --------------------------------------------------
             createLoginTables(stmt);
 
-            // --------------------------------------------------
-            //  Create Restricted (Employee-level) Tables
-            // --------------------------------------------------
+            //  Create Employee related tables
             createCoreInventory(stmt);
             createTransactionTables(stmt);
             createCustomerVendorTables(stmt);
 
-            // --------------------------------------------------
-            //  Manager Only Tables
-            // --------------------------------------------------
+            //  Create manager related tables
             if (isManager) {
                 createMaintenanceTables(stmt);
                 createInspectionScheduleDowntime(stmt);
