@@ -101,7 +101,7 @@ public class Login extends BorderPane {
 		SeederMain.runSeeder(false);
 		
 	    Stage mainMenu = (Stage) getScene().getWindow();
-	    Scene scene = new Scene(new MainMenuPane("Guest", "Search", false), 500, 500); // Create the scene with your pane
+	    Scene scene = new Scene(new MainMenuPane("Guest", "Search", false), 500, 500); 
 	    
 	    
 	    mainMenu.setScene(scene);
@@ -119,7 +119,7 @@ public class Login extends BorderPane {
 			SeederMain.runSeeder(isManager);
 			
 			Stage mainMenu = (Stage) getScene().getWindow();
-		    Scene scene = new Scene(new MainMenuPane(name, "Search", isManager), 500, 500); // Create the scene with your pane
+		    Scene scene = new Scene(new MainMenuPane(name, "Search", isManager), 500, 500); 
 		    
 		    mainMenu.setScene(scene);
 		    mainMenu.setTitle("Main Menu");

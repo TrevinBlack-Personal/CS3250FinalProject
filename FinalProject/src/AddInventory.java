@@ -138,9 +138,6 @@ public class AddInventory extends GridPane {
             loadTableColumns(currentTableName);
             onTableSelected.accept(currentTableName);
             
-            PopUp popUp = new PopUp();
-            popUp.PopUp("Row Inserted Into " + currentTableName);
-
         });
 
         // Clear button resets all text fields

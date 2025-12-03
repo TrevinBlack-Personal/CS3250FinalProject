@@ -21,7 +21,7 @@ public class Database {
     public static void initializeDatabase(Boolean isManager) {
         try (Connection conn = DriverManager.getConnection(URL)) {
 
-            System.out.println("Database connected!");
+            System.out.println("\nDatabase connected!\n");
             Statement stmt = conn.createStatement();
 
             //  Create log in related tables
@@ -39,7 +39,7 @@ public class Database {
                 createInspectionScheduleDowntime(stmt);
             }
 
-            System.out.println("Database initialization complete.");
+            System.out.println("\nDatabase initialization complete.\n");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,7 +82,7 @@ public class Database {
         stmt.execute(employee);
         stmt.execute(manager);
 
-        System.out.println("Login tables ready (users, employee, manager).");
+        System.out.println("\tLogin tables ready (users, employee, manager).\n");
     }
 
     // ========== CORE INVENTORY — ALWAYS CREATED ==========
@@ -120,7 +120,7 @@ public class Database {
         stmt.execute(spareParts);
         stmt.execute(fuel);
 
-        System.out.println("Core inventory tables ready.");
+        System.out.println("\tCore inventory tables ready.\n");
     }
 
     // ========== MANAGER-ONLY TABLES ==========
@@ -141,7 +141,7 @@ public class Database {
         """;
 
         stmt.execute(maintenanceLog);
-        System.out.println("Maintenance log table ready.");
+        System.out.println("\tMaintenance log table ready.\n");
     }
 
     private static void createInspectionScheduleDowntime(Statement stmt) throws Exception {
@@ -185,7 +185,7 @@ public class Database {
         stmt.execute(schedule);
         stmt.execute(downtime);
 
-        System.out.println("Manager-only tables ready.");
+        System.out.println("\tManager-only tables ready.\n");
     }
 
     // ========== CUSTOMER & VENDOR (ALWAYS CREATED) ==========
@@ -214,7 +214,7 @@ public class Database {
         stmt.execute(customer);
         stmt.execute(vendor);
 
-        System.out.println("Customer & vendor tables ready.");
+        System.out.println("\tCustomer & vendor tables ready.\n");
     }
 
     // ========== TRANSACTION RECORDS — ALWAYS CREATED ==========
@@ -275,7 +275,7 @@ public class Database {
         stmt.execute(invoice);
         stmt.execute(purchaseOrder);
 
-        System.out.println("Transaction tables ready.");
+        System.out.println("\tTransaction tables ready.\n");
     }
 
     // ========== RESET DATABASE ==========

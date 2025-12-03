@@ -53,7 +53,12 @@ public class AddSql {
             }
 
             int rows = pstmt.executeUpdate();
-            System.out.println("Inserted " + rows + " row(s) into " + tableName);
+            
+            new Thread(() -> {
+                PopUp.show("Inserted " + rows + " row(s) into " + tableName);
+            }).start();
+
+            
             return true;
 
         } catch (SQLException e) {

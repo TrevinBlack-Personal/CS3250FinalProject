@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public static void main(String[] args) {
-        System.out.println("Welcome to my final project!");
+        System.out.println("Welcome to my final project!\n");
 
         // Initialize database once when app starts
         SeederMain.firstRun();

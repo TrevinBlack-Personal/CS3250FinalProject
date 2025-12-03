@@ -43,7 +43,8 @@ public class CSVSeeder {
                 pstmt.executeUpdate();
             }
 
-            System.out.println("Table seeded from " + csvFile);
+            System.out.println("\tTable seeded from " + csvFile);
+            
 
         } catch (Exception e) {
             e.printStackTrace();

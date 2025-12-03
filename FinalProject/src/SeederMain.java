@@ -78,7 +78,7 @@ public class SeederMain {
 
         // If equipment table already has data reset database
         if (tableHasData("equipment")) {
-            System.out.println("Database already seeded. Resetting...");
+            System.out.println("\nDatabase already seeded. Resetting...\n");
             Database.reset(isManager);
 
             // reseed tables after reset
