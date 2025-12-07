@@ -2,3 +2,40 @@ recordId,equipmentId,maintenanceDate,description,performedBy,fuelType,quantity,c
 1,1,2025-01-10,Oil Change,John Diesel,Diesel,50,4
 2,2,2025-01-15,Bit Replacement,Sarah Miller,Gasoline,20,3
 3,3,2025-01-20,Tire Rotation,Mike Ross,Diesel,100,4
+4,4,2025-01-22,Hydraulic Check,Emma Stone,Diesel,60,4
+5,5,2025-01-25,Engine Tune-Up,Liam Smith,Gasoline,30,3
+6,6,2025-01-28,Belt Replacement,Olivia Brown,Diesel,45,4
+7,7,2025-01-30,Brake Inspection,Noah Johnson,Diesel,25,4
+8,8,2025-02-02,Filter Change,Ava Davis,Gasoline,35,3
+9,9,2025-02-05,Coolant Refill,Ethan Wilson,Diesel,50,4
+10,10,2025-02-08,Gearbox Lubrication,Isabella Moore,Diesel,40,4
+11,11,2025-02-10,Hydraulic Hose Replacement,Lucas Taylor,Gasoline,20,3
+12,12,2025-02-12,Tire Replacement,Mia Anderson,Diesel,90,4
+13,13,2025-02-15,Oil Filter Change,Alexander Thomas,Diesel,55,4
+14,14,2025-02-18,Belt Adjustment,Charlotte Jackson,Gasoline,25,3
+15,15,2025-02-20,Fuel System Cleaning,William White,Diesel,60,4
+16,16,2025-02-23,Engine Diagnostics,Amelia Harris,Diesel,30,4
+17,17,2025-02-25,Brake Pad Replacement,James Martin,Gasoline,40,3
+18,18,2025-02-28,Hydraulic Oil Refill,Sophia Thompson,Diesel,70,4
+19,19,2025-03-02,Filter Replacement,Benjamin Garcia,Diesel,50,4
+20,20,2025-03-05,Wheel Alignment,Emily Martinez,Gasoline,35,3
+21,21,2025-03-08,Tire Rotation,Michael Robinson,Diesel,80,4
+22,22,2025-03-10,Engine Oil Change,Abigail Clark,Diesel,60,4
+23,23,2025-03-12,Hydraulic System Check,Daniel Rodriguez,Gasoline,30,3
+24,24,2025-03-15,Gear Lubrication,Elizabeth Lewis,Diesel,45,4
+25,25,2025-03-18,Belt Replacement,Matthew Lee,Diesel,50,4
+26,26,2025-03-20,Fuel Injector Cleaning,Madison Walker,Gasoline,20,3
+27,27,2025-03-22,Brake Inspection,David Hall,Diesel,25,4
+28,28,2025-03-25,Coolant System Check,Olivia Allen,Diesel,60,4
+29,29,2025-03-28,Oil Change,Joseph Young,Gasoline,40,3
+30,30,2025-03-30,Wheel Replacement,Sophia Hernandez,Diesel,90,4
+31,31,2025-04-02,Engine Tune-Up,Andrew King,Diesel,50,4
+32,32,2025-04-05,Hydraulic Pump Maintenance,Hannah Wright,Gasoline,35,3
+33,33,2025-04-08,Filter Replacement,Christopher Scott,Diesel,60,4
+34,34,2025-04-10,Belt Adjustment,Samantha Green,Diesel,40,4
+35,35,2025-04-12,Brake Pad Change,Joshua Adams,Gasoline,25,3
+36,36,2025-04-15,Oil Refill,Victoria Baker,Diesel,55,4
+37,37,2025-04-18,Engine Diagnostics,Anthony Nelson,Diesel,30,4
+38,38,2025-04-20,Fuel System Check,Grace Carter,Gasoline,20,3
+39,39,2025-04-23,Wheel Alignment,Andrew Mitchell,Diesel,80,4
+40,40,2025-04-25,Hydraulic Hose Replacement,Lily Perez,Diesel,50,4

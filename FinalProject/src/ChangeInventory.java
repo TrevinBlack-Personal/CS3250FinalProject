@@ -27,6 +27,7 @@ import java.util.function.Consumer;
 public class ChangeInventory extends GridPane {
 
     private GridPane fieldContainer;
+    private ComboBox<String> tableSelector;
     
     private Consumer<String> onTableSelected;					 // Callback function param
 
@@ -36,7 +37,7 @@ public class ChangeInventory extends GridPane {
 
     private String currentTableName = null;
 
-    public ChangeInventory() {
+    public ChangeInventory(boolean isManager) {
         setVgap(15);
         setPadding(new Insets(20));
 
@@ -48,13 +49,9 @@ public class ChangeInventory extends GridPane {
         """);
 
         // Table Selection drop down menu
-        ComboBox<String> tableSelector = new ComboBox<>();
-        tableSelector.getItems().addAll(
-            "customer", "downtime", "employee", "equipment",
-            "fuel", "inspections", "invoice number", "maintenance",
-            "manager", "part", "purchase",
-            "sales", "schedule", "users", "vendor", "work order"
-        );
+        tableSelector = new ComboBox<>();
+        loadRoleTables(isManager);
+        tableSelector.setValue(null);
 
         // Buttons
         Button changeButton = new Button("Change");
@@ -198,5 +195,27 @@ public class ChangeInventory extends GridPane {
         this.onTableSelected = callback;
     }
     
-    
+    private void loadRoleTables(Boolean isManager) {
+
+        if (isManager) {
+            tableSelector.getItems().addAll(
+                    "customer", "downtime", "employee", "equipment",
+                    "fuel", "inspections", "invoice number", "maintenance",
+                    "manager", "part", "purchase", "sales",
+                    "schedule", "users", "vendor", "work order"
+                );
+            
+            return;
+        }
+        
+        tableSelector.getItems().addAll(
+                "customer", "equipment",
+                "fuel", "invoice number",
+                "part", "purchase", "sales", 
+                 "vendor", "work order"
+            );
+        
+        return;
+        
+    }
 }

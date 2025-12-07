@@ -2,3 +2,24 @@ partId,name,quantityInStock,cost
 1,Hydraulic Pump,10,2500
 2,Drill Bit,50,200
 3,Truck Tire,20,800
+4,Engine Oil Filter,35,150
+5,Brake Pad,40,300
+6,Air Filter,50,120
+7,Fuel Injector,25,450
+8,Hydraulic Hose,30,500
+9,Gearbox,10,3500
+10,Conveyor Belt,15,1200
+11,Tire Rim,20,600
+12,Drive Shaft,12,1800
+13,Alternator,8,900
+14,Starter Motor,10,1100
+15,Water Pump,14,700
+16,Clutch Plate,18,950
+17,Brake Disc,22,650
+18,Steering Gear,9,2000
+19,Oil Seal,60,100
+20,Sprocket,25,400
+21,Bearing,40,250
+22,Pulley,30,300
+23,Valve,50,150
+24,Shock Absorber,15,1200

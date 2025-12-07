@@ -2,3 +2,33 @@ orderId,orderDate,status,totalAmount,customerId,shippingAddress,paymentMethod
 1,2025-06-01,Completed,10000,CUST001,123 Main St,Credit Card
 2,2025-06-02,Pending,5000,CUST002,456 Oak Ave,Wire Transfer
 3,2025-06-03,Shipped,7500,CUST003,789 Pine Rd,Cash
+4,2025-06-04,Completed,12000,CUST004,12 River Bend Dr,Credit Card
+5,2025-06-05,Pending,4500,CUST005,88 Cedar Lane,Wire Transfer
+6,2025-06-06,Shipped,8000,CUST006,742 Birch Blvd,Cash
+7,2025-06-07,Completed,9500,CUST007,19 Walnut St,Credit Card
+8,2025-06-08,Pending,6000,CUST008,300 Elm St,Wire Transfer
+9,2025-06-09,Shipped,11000,CUST009,27 Maple Circle,Cash
+10,2025-06-10,Completed,7000,CUST010,501 Hillcrest Dr,Credit Card
+11,2025-06-11,Pending,8300,CUST011,92 Forest Path,Wire Transfer
+12,2025-06-12,Shipped,7600,CUST012,14 Lakeside Way,Cash
+13,2025-06-13,Completed,12500,CUST013,77 Oak Ridge Ln,Credit Card
+14,2025-06-14,Pending,6800,CUST014,605 Spruce Ct,Wire Transfer
+15,2025-06-15,Shipped,9200,CUST015,810 Meadow View Rd,Cash
+16,2025-06-16,Completed,5400,CUST016,29 Chestnut St,Credit Card
+17,2025-06-17,Pending,8800,CUST017,440 Sunset Blvd,Wire Transfer
+18,2025-06-18,Shipped,9700,CUST018,58 Pinecone Dr,Cash
+19,2025-06-19,Completed,6300,CUST019,990 Brookside Ave,Credit Card
+20,2025-06-20,Pending,11500,CUST020,210 Highland Rd,Wire Transfer
+21,2025-06-21,Shipped,8000,CUST021,64 Orchard Ln,Cash
+22,2025-06-22,Completed,6700,CUST022,35 Valley View Dr,Credit Card
+23,2025-06-23,Pending,10200,CUST023,12 Cypress Ct,Wire Transfer
+24,2025-06-24,Shipped,8500,CUST024,48 Aspen Grove Way,Cash
+25,2025-06-25,Completed,9000,CUST025,900 Redwood Dr,Credit Card
+26,2025-06-26,Pending,7200,CUST026,77 Willow Brook St,Wire Transfer
+27,2025-06-27,Shipped,9400,CUST027,506 Evergreen Ave,Cash
+28,2025-06-28,Completed,5600,CUST028,19 Boulder Ridge Rd,Credit Card
+29,2025-06-29,Pending,10800,CUST029,802 Prairie Dog Ln,Wire Transfer
+30,2025-06-30,Shipped,8700,CUST030,144 Windy Hill Rd,Cash
+31,2025-07-01,Completed,9500,CUST031,250 Silver Lake Blvd,Credit Card
+32,2025-07-02,Pending,6100,CUST032,10 Cottonwood St,Wire Transfer
+33,2025-07-03,Shipped,10300,CUST033,77 Ironwood Dr,Cash

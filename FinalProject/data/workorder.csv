@@ -2,3 +2,36 @@ orderId,orderDate,status,totalAmount,description,assignedEmployee,dueDate
 1,2025-05-01,Open,5000,Foundation Digging,John Diesel,2025-05-10
 2,2025-05-02,In Progress,3000,Drilling Test,Sarah Miller,2025-05-12
 3,2025-05-03,Closed,7000,Hauling Service,Mike Ross,2025-05-15
+4,2025-05-04,Open,8000,Concrete Pouring,Emma Stone,2025-05-16
+5,2025-05-05,In Progress,4500,Site Grading,Liam Smith,2025-05-18
+6,2025-05-06,Closed,6000,Pipe Installation,Olivia Brown,2025-05-20
+7,2025-05-07,Open,7500,Excavation,Noah Johnson,2025-05-22
+8,2025-05-08,In Progress,5000,Soil Testing,Ava Davis,2025-05-24
+9,2025-05-09,Closed,9500,Asphalt Paving,Ethan Wilson,2025-05-26
+10,2025-05-10,Open,6700,Trenching,Isabella Moore,2025-05-28
+11,2025-05-11,In Progress,7200,Concrete Curing,Lucas Taylor,2025-05-30
+12,2025-05-12,Closed,8800,Pipe Welding,Mia Anderson,2025-06-01
+13,2025-05-13,Open,5300,Site Clearing,Alexander Thomas,2025-06-03
+14,2025-05-14,In Progress,7600,Earth Moving,Charlotte Jackson,2025-06-05
+15,2025-05-15,Closed,8100,Steel Reinforcement,William White,2025-06-07
+16,2025-05-16,Open,6400,Concrete Finishing,Amelia Harris,2025-06-09
+17,2025-05-17,In Progress,9700,Excavator Maintenance,James Martin,2025-06-11
+18,2025-05-18,Closed,5800,Site Survey,Sophia Thompson,2025-06-13
+19,2025-05-19,Open,8500,Pipe Laying,Benjamin Garcia,2025-06-15
+20,2025-05-20,In Progress,6200,Drainage Work,Emily Martinez,2025-06-17
+21,2025-05-21,Closed,9000,Concrete Removal,Michael Robinson,2025-06-19
+22,2025-05-22,Open,7300,Foundation Inspection,Abigail Clark,2025-06-21
+23,2025-05-23,In Progress,6800,Soil Compaction,Daniel Rodriguez,2025-06-23
+24,2025-05-24,Closed,8100,Equipment Calibration,Elizabeth Lewis,2025-06-25
+25,2025-05-25,Open,5400,Hauling Materials,Matthew Lee,2025-06-27
+26,2025-05-26,In Progress,9600,Site Lighting,Madison Walker,2025-06-29
+27,2025-05-27,Closed,7700,Pipe Testing,David Hall,2025-07-01
+28,2025-05-28,Open,8800,Concrete Reinforcement,Olivia Allen,2025-07-03
+29,2025-05-29,In Progress,6500,Trench Filling,Joseph Young,2025-07-05
+30,2025-05-30,Closed,9200,Steel Fabrication,Sophia Hernandez,2025-07-07
+31,2025-05-31,Open,7100,Equipment Inspection,Andrew King,2025-07-09
+32,2025-06-01,In Progress,8400,Asphalt Layering,Hannah Wright,2025-07-11
+33,2025-06-02,Closed,7800,Pipe Alignment,Christopher Scott,2025-07-13
+34,2025-06-03,Open,5600,Site Grading,Samantha Green,2025-07-15
+35,2025-06-04,In Progress,9700,Concrete Pouring,Joshua Adams,2025-07-17
+36,2025-06-05,Closed,6000,Steel Erection,Victoria Baker,2025-07-19

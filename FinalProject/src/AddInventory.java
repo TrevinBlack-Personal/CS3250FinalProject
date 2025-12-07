@@ -27,7 +27,7 @@ import java.util.function.Consumer;
 public class AddInventory extends GridPane {
 
     private GridPane fieldContainer;
-    
+    private ComboBox<String> tableSelector;
     private Consumer<String> onTableSelected;					 // Callback function param
 
     private ArrayList<String> colNames = new ArrayList<>();      // Column names
@@ -36,7 +36,7 @@ public class AddInventory extends GridPane {
 
     private String currentTableName = null;
 
-    public AddInventory() {
+    public AddInventory(boolean isManager) {
         setVgap(15);
         setPadding(new Insets(20));
 
@@ -48,13 +48,9 @@ public class AddInventory extends GridPane {
         """);
 
         // Table Selection drop down menu
-        ComboBox<String> tableSelector = new ComboBox<>();
-        tableSelector.getItems().addAll(
-            "customer", "downtime", "employee", "equipment",
-            "fuel", "inspections", "invoice number", "maintenance",
-            "manager", "part", "purchase",
-            "sales", "schedule", "users", "vendor", "work order"
-        );
+        tableSelector = new ComboBox<>();
+        loadRoleTables(isManager);
+        tableSelector.setValue(null);
 
         // Buttons
         Button addButton = new Button("Add");
@@ -196,5 +192,29 @@ public class AddInventory extends GridPane {
     // Callback function for when a table is selected from drop down menu
     public void setOnTableSelected(Consumer<String> callback) {
         this.onTableSelected = callback;
+    }
+    
+    private void loadRoleTables(Boolean isManager) {
+
+        if (isManager) {
+            tableSelector.getItems().addAll(
+                    "customer", "downtime", "employee", "equipment",
+                    "fuel", "inspections", "invoice number", "maintenance",
+                    "manager", "part", "purchase", "sales",
+                    "schedule", "users", "vendor", "work order"
+                );
+            
+            return;
+        }
+        
+        tableSelector.getItems().addAll(
+                "customer", "equipment",
+                "fuel", "invoice number",
+                "part", "purchase", "sales", 
+                 "vendor", "work order"
+            );
+        
+        return;
+        
     }
 }

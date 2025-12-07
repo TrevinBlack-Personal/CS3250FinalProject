@@ -36,7 +36,7 @@ public class MainMenuPane extends BorderPane {
 
             }
             case "Add" -> {
-                AddInventory addInventory = new AddInventory();
+                AddInventory addInventory = new AddInventory(isManager);
                 addInventory.setStyle("-fx-background-color:#4682B4; -fx-border-color:black");
                 addInventory.setPrefWidth(150);
                 setLeft(addInventory);
@@ -48,7 +48,7 @@ public class MainMenuPane extends BorderPane {
                 
             }
             case "Delete" -> {
-                DeleteInventory deleteInventory = new DeleteInventory();
+                DeleteInventory deleteInventory = new DeleteInventory(isManager);
                 deleteInventory.setStyle("-fx-background-color:#4682B4; -fx-border-color:black");
                 deleteInventory.setPrefWidth(150);
                 setLeft(deleteInventory);
@@ -63,7 +63,7 @@ public class MainMenuPane extends BorderPane {
                 });
             }
             case "Change" -> {
-            	ChangeInventory changeInventory = new ChangeInventory();
+            	ChangeInventory changeInventory = new ChangeInventory(isManager);
                 changeInventory.setStyle("-fx-background-color:#4682B4; -fx-border-color:black");
                 changeInventory.setPrefWidth(150);
                 setLeft(changeInventory);

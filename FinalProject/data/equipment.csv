@@ -2,3 +2,33 @@ equipmentId,name,type,quantity,status
 1,Excavator,Heavy,5,Active
 2,Drill,Tool,15,Under Maintenance
 3,Dump Truck,Vehicle,3,Active
+4,Bulldozer,Heavy,4,Active
+5,Wheel Loader,Heavy,6,Under Maintenance
+6,Concrete Mixer,Machine,2,Active
+7,Grader,Heavy,3,Active
+8,Crane,Heavy,1,Under Maintenance
+9,Jackhammer,Tool,20,Active
+10,Compactor,Machine,4,Active
+11,Skid Steer,Heavy,5,Active
+12,Water Truck,Vehicle,2,Active
+13,Generator,Machine,7,Under Maintenance
+14,Backhoe,Heavy,3,Active
+15,Welding Machine,Tool,10,Active
+16,Chainsaw,Tool,25,Active
+17,Air Compressor,Machine,4,Under Maintenance
+18,Scissor Lift,Vehicle,2,Active
+19,Forklift,Vehicle,6,Active
+20,Concrete Saw,Tool,12,Active
+21,Mini Excavator,Heavy,4,Active
+22,Plate Compactor,Tool,8,Under Maintenance
+23,Pneumatic Drill,Tool,14,Active
+24,Road Roller,Heavy,2,Active
+25,Power Trowel,Machine,3,Active
+26,Service Truck,Vehicle,1,Active
+27,Tower Light,Machine,5,Active
+28,Surveying Equipment,Tool,9,Active
+29,Hydraulic Press,Machine,2,Under Maintenance
+30,Front Loader,Heavy,4,Active
+31,Rock Breaker,Tool,11,Active
+32,Brush Cutter,Tool,18,Active
+33,Earth Auger,Tool,6,Active

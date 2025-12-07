@@ -2,3 +2,24 @@ scheduleId,equipmentId,scheduleDate,taskType,assignedTo
 1,1,2025-03-01,Oil Change,John Diesel
 2,2,2025-03-05,Calibration,Sarah Miller
 3,3,2025-03-10,Brake Test,Mike Ross
+4,4,2025-03-12,Hydraulic Check,Emma Stone
+5,5,2025-03-14,Engine Tune-Up,Liam Smith
+6,6,2025-03-16,Belt Replacement,Olivia Brown
+7,7,2025-03-18,Brake Inspection,Noah Johnson
+8,8,2025-03-20,Filter Change,Ava Davis
+9,9,2025-03-22,Coolant Refill,Ethan Wilson
+10,10,2025-03-24,Gearbox Lubrication,Isabella Moore
+11,11,2025-03-26,Hydraulic Hose Replacement,Lucas Taylor
+12,12,2025-03-28,Tire Replacement,Mia Anderson
+13,13,2025-03-30,Oil Filter Change,Alexander Thomas
+14,14,2025-04-01,Belt Adjustment,Charlotte Jackson
+15,15,2025-04-03,Fuel System Cleaning,William White
+16,16,2025-04-05,Engine Diagnostics,Amelia Harris
+17,17,2025-04-07,Brake Pad Replacement,James Martin
+18,18,2025-04-09,Hydraulic Oil Refill,Sophia Thompson
+19,19,2025-04-11,Filter Replacement,Benjamin Garcia
+20,20,2025-04-13,Wheel Alignment,Emily Martinez
+21,21,2025-04-15,Tire Rotation,Michael Robinson
+22,22,2025-04-17,Engine Oil Change,Abigail Clark
+23,23,2025-04-19,Hydraulic System Check,Daniel Rodriguez
+24,24,2025-04-21,Gear Lubrication,Elizabeth Lewis

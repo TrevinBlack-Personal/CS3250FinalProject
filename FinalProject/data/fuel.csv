@@ -2,3 +2,13 @@ fuelId,fuelType,quantity,costPerUnit
 1,Diesel,5000,4
 2,Gasoline,3000,3
 3,Propane,1500,2
+4,BioDiesel,4200,5
+5,Kerosene,2800,3
+6,Jet Fuel,7500,6
+7,Natural Gas,6000,2
+8,Ethanol,3500,3
+9,Heavy Fuel Oil,9000,4
+10,Premium Gasoline,2500,4
+11,Compressed Natural Gas,4800,3
+12,Butane,1600,2
+13,Renewable Diesel,5200,5

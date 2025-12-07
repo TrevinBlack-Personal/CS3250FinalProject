@@ -24,8 +24,10 @@ public class DeleteInventory extends GridPane {
 	
     private Consumer<String> onTableSelected; 	// Callback variable for table selection
     private Runnable onDeletePressed; 			// Callback variable for when deleting a row
+    private ComboBox<String> tableSelector;
 
-	public DeleteInventory() {
+    
+	public DeleteInventory(boolean isManager) {
 		
 		// Set gap between rows 15 pixels
 		setVgap(15);
@@ -37,14 +39,10 @@ public class DeleteInventory extends GridPane {
 		    "-fx-font-weight: bold;" +
 		    "-fx-text-fill: #ffffff;"		);
 
-        // Dropdown menu
-        ComboBox<String> tableSelector = new ComboBox<>();
-        tableSelector.getItems().addAll(
-                "customer", "downtime", "employee", "equipment",
-                "fuel", "inspections", "invoice number", "maintenance",
-                "manager", "part", "purchase",
-                "sales", "schedule", "users", "vendor", "work order"
-            );
+        // Table Selection drop down menu
+        tableSelector = new ComboBox<>();
+        loadRoleTables(isManager);
+        tableSelector.setValue(null);
         
         
         // Search button
@@ -100,6 +98,30 @@ public class DeleteInventory extends GridPane {
 	// on delete press issue callback - updates tableview for deleting a row
     public void setOnDeletePressed(Runnable callback) {
         this.onDeletePressed = callback;
+    }
+    
+    private void loadRoleTables(Boolean isManager) {
+
+        if (isManager) {
+            tableSelector.getItems().addAll(
+                    "customer", "downtime", "employee", "equipment",
+                    "fuel", "inspections", "invoice number", "maintenance",
+                    "manager", "part", "purchase", "sales",
+                    "schedule", "users", "vendor", "work order"
+                );
+            
+            return;
+        }
+        
+        tableSelector.getItems().addAll(
+                "customer", "equipment",
+                "fuel", "invoice number",
+                "part", "purchase", "sales", 
+                 "vendor", "work order"
+            );
+        
+        return;
+        
     }
 }
 
